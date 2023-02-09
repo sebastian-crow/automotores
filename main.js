@@ -8,7 +8,8 @@ createApp({
             PartialSale: [],
             Part: undefined,
             Amount: undefined,
-            Message: undefined
+            Message: undefined,
+            Flag: false
 
         }
     },
@@ -19,16 +20,16 @@ createApp({
         */
         partialSell() {
 
-            if (this.Part != undefined || this.Part != '' || this.Amount != undefined || this.Amount != '') {
-
+            if (this.Part != undefined && this.Part != '' && this.Amount != undefined && this.Amount != '') {
+                this.Flag = true;
                 const part = this.Parts.filter(part => part.Name == this.Part);
                 const index = this.Parts.findIndex((elemento, index) => {
                     if (elemento.Name == this.Part) {
                         return true;
                     }
                 });
-                console.log(index);
-                console.log(part[0].Amount);
+                // console.log(index);
+                // console.log(part[0].Amount);
 
                 if (part[0].Amount > this.Amount) {
                     let price = this.Amount * part[0].Price;
@@ -36,8 +37,8 @@ createApp({
 
                     this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
 
-                    console.log(this.PartialSale)
-                    console.log(this.Parts)
+                    // console.log(this.PartialSale)
+                    // console.log(this.Parts)
                 } else {
                     this.Message = 'Cantidad insuficiente, tenemos: ' + part[0].Amount + ' unidades';
                     console.log(this.Message);
@@ -54,23 +55,63 @@ createApp({
         */
         sell() {
 
-            const sales = this.PartialSale.reduce(function (resultado, elemento) {
-                return resultado + elemento.Price;
-            }, 0);
+            console.log(this.PartialSell)
+            let myFlag = true;
 
-            let sale = sales + (sales * 0.19);
+            if (this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') {
+                this.Message = 'Seleccione repuesto y cantidad';
+                console.log(this.Message)
+                myFlag = false;
+            }
 
-            this.PartialSale.push({ Sale: sale });
+            if (myFlag) {
+                this.partialSell();
+                const sales = this.PartialSale.reduce(function (resultado, elemento) {
+                    return resultado + elemento.Price;
+                }, 0);
 
-            console.log(this.PartialSale);
+                let sale = sales + (sales * 0.19);
 
-            localStorage.setItem("sales", JSON.stringify(this.PartialSale));
+                this.PartialSale=this.PartialSale.concat({ Sale: sale });
 
-            this.PartialSell = [];
+                console.log(this.PartialSale);
 
-            console.log(sales + '-' + sale)
+                this.Sales.push(this.partialSale);
+
+                localStorage.setItem("sales", JSON.stringify(this.Sales));
+
+                this.Message = 'Venta exitosa';
+
+                this.PartialSell = [];
+
+                console.log(sales + '-' + sale)
+                myFlag = false;
+            }
+
+            if (this.Flag && myFlag) {
+                const sales = this.PartialSale.reduce(function (resultado, elemento) {
+                    return resultado + elemento.Price;
+                }, 0);
+
+                let sale = sales + (sales * 0.19);
+
+                this.PartialSale.push({ Sale: sale });
+
+                console.log(this.PartialSale);
+
+                localStorage.setItem("sales", JSON.stringify(this.PartialSale));
+
+                this.Message = 'Venta exitosa';
+
+                this.PartialSell = [];
+
+                console.log(sales + '-' + sale)
+            }
+
+            console.log(this.Sales)
 
         },
+
         PartsGenerator() {
             let amount = Math.floor(Math.random() * 125) + 75;
             return [{
@@ -122,7 +163,7 @@ createApp({
     mounted() {
         this.Parts = this.PartsGenerator();
         this.Sales = JSON.parse(localStorage.getItem("sales"));
-        
+
     },
 }).mount("#root");
 

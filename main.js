@@ -28,17 +28,14 @@ createApp({
                         return true;
                     }
                 });
-                // console.log(index);
-                // console.log(part[0].Amount);
 
                 if (part[0].Amount > this.Amount) {
                     let price = this.Amount * part[0].Price;
                     this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price });
 
                     this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
-
-                    // console.log(this.PartialSale)
-                    // console.log(this.Parts)
+                    this.Message = 'Repuesto agregado';
+                    console.log(this.Message);
                 } else {
                     this.Message = 'Cantidad insuficiente, tenemos: ' + part[0].Amount + ' unidades';
                     console.log(this.Message);
@@ -55,16 +52,15 @@ createApp({
         */
         sell() {
 
-            console.log(this.PartialSell)
             let myFlag = true;
-
             if (this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') {
                 this.Message = 'Seleccione repuesto y cantidad';
                 console.log(this.Message)
                 myFlag = false;
             }
 
-            if (myFlag) {
+
+            if (myFlag && !this.Flag ) {
                 this.partialSell();
                 const sales = this.PartialSale.reduce(function (resultado, elemento) {
                     return resultado + elemento.Price;
@@ -72,17 +68,21 @@ createApp({
 
                 let sale = sales + (sales * 0.19);
 
-                this.PartialSale=this.PartialSale.concat({ Sale: sale });
+                this.PartialSale.push({ Sale: sale });
 
-                console.log(this.PartialSale);
+               // console.log(this.PartialSale);
 
-                this.Sales.push(this.partialSale);
+                this.Sales.push(this.PartialSale);
+                //console.log(this.Sales);
 
                 localStorage.setItem("sales", JSON.stringify(this.Sales));
 
                 this.Message = 'Venta exitosa';
 
-                this.PartialSell = [];
+                this.PartialSale = [];
+
+                this.Message = 'Compra realizada con exito';
+                console.log('1:'+this.Message);
 
                 console.log(sales + '-' + sale)
                 myFlag = false;
@@ -97,18 +97,25 @@ createApp({
 
                 this.PartialSale.push({ Sale: sale });
 
-                console.log(this.PartialSale);
+               // console.log(this.PartialSale);
+
+                this.Sales.push(this.PartialSale);
+                //console.log(this.Sales);
 
                 localStorage.setItem("sales", JSON.stringify(this.PartialSale));
 
                 this.Message = 'Venta exitosa';
 
-                this.PartialSell = [];
+                this.PartialSale = [];
+
+                this.Message = 'Compra realizada con exito';
+                console.log('*:'+this.Message);
 
                 console.log(sales + '-' + sale)
+                this.Flag = false;
             }
 
-            console.log(this.Sales)
+            // console.log(this.Sales)
 
         },
 
@@ -162,7 +169,7 @@ createApp({
     },
     mounted() {
         this.Parts = this.PartsGenerator();
-        this.Sales = JSON.parse(localStorage.getItem("sales"));
+        //this.Sales = JSON.parse(localStorage.getItem("sales"));
 
     },
 }).mount("#root");

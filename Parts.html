@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Documento</title>
 </head>
+
 <body>
-    
+    <div id="app">
+        <select v-model="Part">
+            <option v-for="(part, index) in Parts" :value="index" :key="index">{{part.Name}}</option>
+        </select>
+        <label>Cantidad disponible:<label v-text="Parts[Part].Amount"></label></label>
+        <label>Precio C/U:<label v-text="Parts[Part].Price"></label></label>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 </body>
+
 <script src="Parts.js"></script>
 </html>

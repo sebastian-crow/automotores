@@ -1,5 +1,4 @@
 function PartsGenerator(){
-    let amount = Math.floor(Math.random() * 125) + 75;
     return [{
                 Name: "Amortiguadores",
                 Price:40000,
@@ -46,7 +45,8 @@ function PartsGenerator(){
 var app = new Vue({
     el: "#app",
     data: {
-        Parts:[]
+        Parts:PartsGenerator(),
+        Part:0,
     },
     methods:{
 

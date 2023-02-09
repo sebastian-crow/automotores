@@ -47,9 +47,13 @@ var app = new Vue({
     data: {
         Parts:PartsGenerator(),
         Part:0,
+        Amount:0,
+        Cart:[],
     },
     methods:{
-
+        AddToCart(){
+            
+        },
     },
 
 })

@@ -7,6 +7,7 @@
     <title>Repuestos</title>
     <link rel="stylesheet" href="../style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body class="relative min-h-screen mb-[40px]">
     <nav
@@ -193,5 +194,44 @@
         </div>
       </footer>
     </div> -->
+    <script src="main.js"></script>
   </body>
 </html>
+
+<!-- <div id="root">
+  <select v-model="Part">
+      <option v-for="(part, index) in Parts" :value="index" :key="index" v-if="Parts[index].Amount>0">
+          {{part.Name}}</option>
+  </select>
+  <div v-if="Parts[Part].Amount>0">
+      <label>Cantidad disponible:<label v-text="Parts[Part].Amount"></label></label>
+      <label>Precio C/U:<label v-text="Parts[Part].Price"></label></label>
+      <input type="number" v-model="Amount" max="Parts[Part].Amount" name="" id="">
+      <button @click="AddToCart"></button>
+  </div>
+  <div>----- Cart ----</div>
+  <div v-if="Cart.lenght>0">
+      <table>
+          <tr>
+          <th>
+              Producto
+          </th>
+          <th>
+              Precio
+          </th>
+          <th>
+              Cantidad
+          </th>
+          <th>
+              Total
+          </th>
+          </tr>
+          <tr v-for="(product, index) in Cart" :value="index" :key="index">
+              <td></td>
+          </tr>
+      </table>
+  </div>
+  <div v-else>
+      <label >sin elementos</label>
+  </div>
+</div> -->

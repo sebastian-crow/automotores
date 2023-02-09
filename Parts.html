@@ -37,7 +37,7 @@
                     Total
                 </th>
                 </tr>
-                <tr>
+                <tr v-for="(product, index) in Cart" :value="index" :key="index">
                     <td></td>
                 </tr>
             </table>
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </body>
 
 <script src="Parts.js"></script>

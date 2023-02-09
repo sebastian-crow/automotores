@@ -29,13 +29,15 @@ createApp({
                     }
                 });
 
-                if (part[0].Amount > this.Amount) {
+                if (part[0].Amount >= this.Amount) {
                     let price = this.Amount * part[0].Price;
                     this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price });
-
                     this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
+
                     this.Message = 'Repuesto agregado';
                     console.log(this.Message);
+                    this.Part = undefined;
+                    this.Amount = undefined;
 
                 } else {
                     this.Message = 'Cantidad insuficiente, tenemos: ' + part[0].Amount + ' unidades';
@@ -54,40 +56,44 @@ createApp({
         sell() {
 
 
-            if (this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') {
+            if ((this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') && this.PartialSale.length == 0) {
                 this.Message = 'Seleccione repuesto y cantidad';
                 console.log(this.Message)
-                myFlag = false;
-            }else{
+            } else {
                 this.partialSell();
-                const sales = this.PartialSale.reduce(function (resultado, elemento) {
-                    return resultado + elemento.Price;
-                }, 0);
 
-                let sale = sales + (sales * 0.19);
+                if (!this.Amount) {
+                    const sales = this.PartialSale.reduce(function (resultado, elemento) {
+                        return resultado + elemento.Price;
+                    }, 0);
 
-                this.PartialSale.push({ Sale: sale });
+                    let sale = sales + (sales * 0.19);
 
-                const Sales = this.Sales?.length > 0 ? [...this.Sales,this.PartialSale] : [this.PartialSale];
-                console.log(Sales);
-                localStorage.setItem("Sales", JSON.stringify(Sales));
+                    this.PartialSale.push({ Sale: sale });
 
-                this.PartialSale = [];
+                    // const Sales = this.Sales?.length > 0 ? [...this.Sales, this.PartialSale] : [this.PartialSale];
+                    // localStorage.setItem("Sales", JSON.stringify(Sales));
+                    // location.reload();
 
-                this.Message = 'Venta realizada con exito';
-                console.log('1:' + this.Message);
-                this.Part = '';
-                this.Amount = '';
+                    if (this.Sales?.length > 0) {
+                        this.Sales.push(this.PartialSale);
+                    } else {
+                        this.Sales = [{ n: 1 }];
+                        this.Sales.push(this.PartialSale);
+                    }
+                    localStorage.setItem("Sales", JSON.stringify(this.Sales));
 
-                console.log(sales + '-' + sale)
+                    this.PartialSale = [];
+
+                    this.Message = 'Venta realizada con exito';
+                    console.log(this.Message);
+                    console.log(this.Parts)
+                }
+
             }
-
-          
-
         },
 
         PartsGenerator() {
-            let amount = Math.floor(Math.random() * 125) + 75;
             return [{
                 Name: "Amortiguadores",
                 Price: 40000,
@@ -136,9 +142,12 @@ createApp({
     },
     mounted() {
         this.Parts = this.PartsGenerator();
+        console.log(this.Parts)
         this.Sales = JSON.parse(localStorage.getItem("Sales"));
 
     },
 }).mount("#root");
+
+
 
 

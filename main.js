@@ -163,7 +163,7 @@ createApp({
     mounted() {
         this.Parts = this.PartsGenerator();
         this.Sales = JSON.parse(localStorage.getItem("sales"));
-
+        this.Amount = 0;
     },
 }).mount("#root");
 

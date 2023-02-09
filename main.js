@@ -3,56 +3,127 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            helloWorld: "Hello world",
-            parts: [
-                { name: 'Llanta', amount: 200, price: 250 },
-                { name: 'Aceite', amount: 120, price: 20 },
-                { name: 'Bateria', amount: 100, price: 500 },
-                { name: 'Espejo', amount: 300, price: 50 }
-            ],
-            sales: [],
-            partialSale: [],
-            part: undefined,
-            amount: undefined,
-            message: undefined
+            Parts: [],
+            Sales: [],
+            PartialSale: [],
+            Part: undefined,
+            Amount: undefined,
+            Message: undefined
 
         }
     },
     methods: {
 
         /*
-        función para cambiar el estado de los repuestos: vendido o en inventario.
+        función acumular las ventas de los productos.
         */
-        sell() {
+        partialSell() {
 
-            if (this.part != undefined || this.part != '' || this.amount != undefined || this.amount != '') {
+            if (this.Part != undefined || this.Part != '' || this.Amount != undefined || this.Amount != '') {
 
-                const part = this.parts.filter(part => part.name == this.part);
-                console.log(part[0].amount);
+                const part = this.Parts.filter(part => part.Name == this.Part);
+                const index = this.Parts.findIndex((elemento, index) => {
+                    if (elemento.Name == this.Part) {
+                        return true;
+                    }
+                });
+                console.log(index);
+                console.log(part[0].Amount);
 
-                if (part[0].amount> this.amount) { 
-                    let price = this.amount * part[0].price;
-                    this.partialSale.push({name: this.part, amount: this.amount, price: price});
+                if (part[0].Amount > this.Amount) {
+                    let price = this.Amount * part[0].Price;
+                    this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price });
 
-                    
+                    this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
 
-                    console.log(this.partialSale)
+                    console.log(this.PartialSale)
+                    console.log(this.Parts)
                 } else {
-                    this.message = 'Cantidad insuficiente, tenemos: ' + part[0].amount + ' unidades';
-                    console.log(this.message);
+                    this.Message = 'Cantidad insuficiente, tenemos: ' + part[0].Amount + ' unidades';
+                    console.log(this.Message);
                 }
 
             } else {
-                this.message = 'Todos los campos son obligatorios';
-                console.log(this.message);
+                this.Message = 'Todos los campos son obligatorios';
+                console.log(this.Message);
             }
+        },
 
+        /* 
+        funcion para efectuar la venta incluyento el IVA y guardando el resultado en LocalStorage
+        */
+        sell() {
 
+            const sales = this.PartialSale.reduce(function (resultado, elemento) {
+                return resultado + elemento.Price;
+            }, 0);
+
+            let sale = sales + (sales * 0.19);
+
+            this.PartialSale.push({ Sale: sale });
+
+            console.log(this.PartialSale);
+
+            localStorage.setItem("sales", JSON.stringify(this.PartialSale));
+
+            this.PartialSell = [];
+
+            console.log(sales + '-' + sale)
+
+        },
+        PartsGenerator() {
+            let amount = Math.floor(Math.random() * 125) + 75;
+            return [{
+                Name: "Amortiguadores",
+                Price: 40000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Luces",
+                Price: 35000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Baterías",
+                Price: 120000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Llantas",
+                Price: 350000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Espejos",
+                Price: 100000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Rines",
+                Price: 230000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Neumáticos",
+                Price: 60000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Antenas",
+                Price: 15000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Filtros",
+                Price: 20000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            }, {
+                Name: "Vidrios",
+                Price: 45000,
+                Amount: Math.floor(Math.random() * 125) + 75,
+            },
+            ]
         }
 
 
     },
     mounted() {
-        this.carParts = JSON.parse(localStorage.getItem("carParts"));
+        this.Parts = this.PartsGenerator();
+        this.Sales = JSON.parse(localStorage.getItem("sales"));
+        
     },
 }).mount("#root");
+
+

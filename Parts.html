@@ -21,7 +21,7 @@
             <button @click="partialSell">press me!</button>
         </div>
         <div>----- Cart ----</div>
-        <div >
+        <div v-show="PartialSale.length!=0">
             <table>
                 <tr>
                 <th>
@@ -38,13 +38,14 @@
                 </th>
                 </tr>
                 <tr v-for="(product, index) in PartialSale" :value="index" :key="index">
-                    <td>{{product.Name}}</td>
-                    <td>{{product.Amount}}</td>
+                    <td>{{product.Name}}</td>                    
                     <td>{{product.Price}}</td>
+                    <td>{{product.Amount}}</td>
+                    <td>{{product.Total}}</td>
                 </tr>
             </table>
         </div>
-        <div v-else>
+        <div v-show="PartialSale.length==0">
             <label >sin elementos</label>
         </div>
     </div>

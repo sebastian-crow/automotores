@@ -24,7 +24,8 @@ createApp({
                     this.PartialSale.push({ 
                         Name: Part.Name, 
                         Amount: this.Amount, 
-                        Price: (Part.Price*this.Amount),})
+                        Price: Part.Price,
+                    Total: (Part.Price*this.Amount),})
                     console.log(this.Amount)
                     this.Parts[this.Part].Amount -= this.Amount;
                     this.Part = '';

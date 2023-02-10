@@ -9,8 +9,6 @@ createApp({
             Part: '',
             Amount: undefined,
             Message: undefined,
-
-
         }
     },
     methods: {
@@ -24,16 +22,19 @@ createApp({
 
             if (this.Part != undefined && this.Part != '' && this.Amount != undefined && this.Amount != '') {
 
-                const part = this.Parts.filter(part => part.Name == this.Part);
-                const index = this.Parts.findIndex((elemento, index) => {
-                    if (elemento.Name == this.Part) {
-                        return true;
-                    }
-                });
+                // const part = this.Parts.filter(part => part.Name == this.Part);
+                // const index = this.Parts.findIndex((elemento, index) => {
+                //     if (elemento.Name == this.Part) {
+                //         return true;
+                //     }
+                // });
 
-                if (part[0].Amount >= this.Amount) {
-                    let price = this.Amount * part[0].Price;
-                    this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price, Url: part[0].Url });
+                const part = this.Parts[this.Part];
+                const index = this.Part;
+
+                if (part.Amount >= this.Amount) {
+                    let price = this.Amount * part.Price;
+                    this.PartialSale.push({ Name: part.Name, unitPrice: part.Price, Amount: this.Amount, Price: price, Url: part.Url });
                     this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
 
                     this.Message = 'Repuesto agregado';
@@ -42,7 +43,7 @@ createApp({
                     this.Amount = undefined;
 
                 } else {
-                    this.Message = 'Cantidad insuficiente, tenemos: ' + part[0].Amount + ' unidades';
+                    this.Message = 'Cantidad insuficiente, tenemos: ' + part.Amount + ' unidades';
                     console.log(this.Message);
                 }
 

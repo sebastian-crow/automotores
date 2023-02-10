@@ -6,11 +6,9 @@ createApp({
             Parts: [],
             Sales: [],
             PartialSale: [],
-            Part: undefined,
+            Part: '',
             Amount: undefined,
             Message: undefined,
-
-
         }
     },
     methods: {

@@ -6,7 +6,7 @@ createApp({
             Parts: [],
             Sales: [],
             PartialSale: [],
-            Part: undefined,
+            Part: '',
             Amount: undefined,
             Message: undefined,
 
@@ -17,6 +17,8 @@ createApp({
 
         /*
         función acumular las ventas de los productos.
+        Hacer el descuento de unidades segun corresponda en el array Parts.
+        Agregar la venta con sus respectivos campos un array parcial de ventas PartialSale.
         */
         partialSell() {
 
@@ -31,12 +33,12 @@ createApp({
 
                 if (part[0].Amount >= this.Amount) {
                     let price = this.Amount * part[0].Price;
-                    this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price });
+                    this.PartialSale.push({ Name: this.Part, Amount: this.Amount, Price: price, Url: part[0].Url });
                     this.Parts[index].Amount = this.Parts[index].Amount - this.Amount;
 
                     this.Message = 'Repuesto agregado';
                     console.log(this.Message);
-                    this.Part = undefined;
+                    this.Part = '';
                     this.Amount = undefined;
 
                 } else {
@@ -51,10 +53,10 @@ createApp({
         },
 
         /* 
-        funcion para efectuar la venta incluyento el IVA y guardando el resultado en LocalStorage
+        funcion para efectuar la venta incluyento el IVA.
+        Guardar el resultado de la venta con IVA en LocalStorage con el nombre de Sales.
         */
         sell() {
-
 
             if ((this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') && this.PartialSale.length == 0) {
                 this.Message = 'Seleccione repuesto y cantidad';
@@ -98,42 +100,52 @@ createApp({
                 Name: "Amortiguadores",
                 Price: 40000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Luces",
                 Price: 35000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Baterías",
                 Price: 120000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Llantas",
                 Price: 350000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Espejos",
                 Price: 100000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Rines",
                 Price: 230000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Neumáticos",
                 Price: 60000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Antenas",
                 Price: 15000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Filtros",
                 Price: 20000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             }, {
                 Name: "Vidrios",
                 Price: 45000,
                 Amount: Math.floor(Math.random() * 125) + 75,
+                Url: ''
             },
             ]
         }

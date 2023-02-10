@@ -7,7 +7,7 @@ createApp({
             Sales: [],
             PartialSale: [],
             Part: '',
-            Amount: undefined,
+            Amount: '',
             Message: undefined,
         }
     },
@@ -20,7 +20,7 @@ createApp({
         */
         partialSell() {
 
-            if (this.Part != undefined && this.Part != '' && this.Amount != undefined && this.Amount != '') {
+            if (this.Part !== '' && this.Amount != '') {
 
                 // const part = this.Parts.filter(part => part.Name == this.Part);
                 // const index = this.Parts.findIndex((elemento, index) => {
@@ -40,7 +40,7 @@ createApp({
                     this.Message = 'Repuesto agregado';
                     console.log(this.Message);
                     this.Part = '';
-                    this.Amount = undefined;
+                    this.Amount = '';
 
                 } else {
                     this.Message = 'Cantidad insuficiente, tenemos: ' + part.Amount + ' unidades';
@@ -59,7 +59,7 @@ createApp({
         */
         sell() {
 
-            if ((this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') && this.PartialSale.length == 0) {
+            if ((this.Part === '' || this.Amount == '') && this.PartialSale.length == 0) {
                 this.Message = 'Seleccione repuesto y cantidad';
                 console.log(this.Message)
             } else {
@@ -81,7 +81,7 @@ createApp({
                     if (this.Sales?.length > 0) {
                         this.Sales.push(this.PartialSale);
                     } else {
-                       this.Sales=[this.PartialSale];
+                        this.Sales = [this.PartialSale];
                     }
                     localStorage.setItem("Sales", JSON.stringify(this.Sales));
 

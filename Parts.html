@@ -10,18 +10,17 @@
 
 <body>
     <div id="root">
-        <select v-model="Part">
-            <option v-for="(part, index) in Parts" :value="index" :key="index" v-if="Parts[index].Amount>0">
+            <select v-model="Part">
+            <option v-for="part in Parts" :value="part" v-show="part.Amount>0">
                 {{part.Name}}</option>
-        </select>
-        <div v-if="Parts[Part].Amount>0">
-            <label>Cantidad disponible:<label v-text="Parts[Part].Amount"></label></label>
-            <label>Precio C/U:<label v-text="Parts[Part].Price"></label></label>
-            <input type="number" v-model="Amount" max="Parts[Part].Amount" name="" id="">
-            <button @click="AddToCart"></button>
+            </select>
+        <div v-show="Part!=''">
+            <label>Cantidad disponible:<label v-text="Part.Amount"></label></label>
+            <label>Precio C/U:<label v-text="Part.Price"></label></label>
+            <input type="number" v-model="Amount" max="Part.Amount" name="" id="">
         </div>
         <div>----- Cart ----</div>
-        <div v-if="Cart.lenght>0">
+        <!--<div v-if="Cart.lenght>0">
             <table>
                 <tr>
                 <th>
@@ -44,7 +43,7 @@
         </div>
         <div v-else>
             <label >sin elementos</label>
-        </div>
+        </div>-->
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

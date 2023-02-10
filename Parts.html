@@ -11,16 +11,17 @@
 <body>
     <div id="root">
             <select v-model="Part">
-            <option v-for="part in Parts" :value="part" v-show="part.Amount>0">
+            <option v-for="(part, index) in Parts" :value="index" v-show="part.Amount>0">
                 {{part.Name}}</option>
             </select>
         <div v-show="Part!=''">
             <label>Cantidad disponible:<label v-text="Part.Amount"></label></label>
             <label>Precio C/U:<label v-text="Part.Price"></label></label>
             <input type="number" v-model="Amount" max="Part.Amount" name="" id="">
+            <button @click="partialSell">press me!</button>
         </div>
         <div>----- Cart ----</div>
-        <!--<div v-if="Cart.lenght>0">
+        <div >
             <table>
                 <tr>
                 <th>
@@ -36,19 +37,21 @@
                     Total
                 </th>
                 </tr>
-                <tr v-for="(product, index) in Cart" :value="index" :key="index">
-                    <td></td>
+                <tr v-for="(product, index) in PartialSale" :value="index" :key="index">
+                    <td>{{product.Name}}</td>
+                    <td>{{product.Amount}}</td>
+                    <td>{{product.Price}}</td>
                 </tr>
             </table>
         </div>
         <div v-else>
             <label >sin elementos</label>
-        </div>-->
+        </div>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </body>
 
-<script src="main.js"></script>
+<script src="Parts.js"></script>
 
 </html>

@@ -81,8 +81,7 @@ createApp({
                     if (this.Sales?.length > 0) {
                         this.Sales.push(this.PartialSale);
                     } else {
-                        this.Sales = [{ n: 1 }];
-                        this.Sales.push(this.PartialSale);
+                       this.Sales=[this.PartialSale];
                     }
                     localStorage.setItem("Sales", JSON.stringify(this.Sales));
 

@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-</head>
-<body>
-    <h1>Iniciar Sesión</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div class="absolute top-40 left-72 w-[80%]">
+        <!-- component -->
+        <div class="flex justify-center items-center w-full h-full bg-white">
+          <div class="container mx-auto my-4 px-4 lg:px-20">
+            <div
+              class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-none border-2 border-black shadow-xl border-2 border-black relative shadow-pop-bl"
+            >
+              <div class="flex">
+                <h1
+                  class="font-bold uppercase text-5xl"
+                  style="font-family: 'color-basic'"
+                >
+                  Iniciar Sesión
+                </h1>
+              </div>
+              <div class="grid grid-cols-2 gap-5 md:grid-cols-2 mt-5">
+                <select
+                  class="col-span-2 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Rol*"
+                  v-model="input.rol"
+                >
+                  <option disabled value="">Selecciona tu rol</option>
+                  <option value="mechanic">Mecanico</option>
+                  <option value="customer">Cliente</option>
+                </select>
+                <input
+                  class="col-span-2 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Documento*"
+                />
+              </div>
+
+              <div
+                class="col-span-1 mt-10 my-2 w-1/2 lg:w-1/4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              >
+                <button
+                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline"
+                  style="font-family: 'color-basic'"
+                >
+                  Ingresar
+                </button>
+              </div>
+              <div class="absolute bottom-12 right-36 w-80">
+                <span class="text-md" style="font-family: 'trs">
+                  No tienes una cuenta?
+                  <a href="./Register/index.html"
+                    ><strong>Registrate Aqui!</strong></a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

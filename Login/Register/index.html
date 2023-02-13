@@ -4,10 +4,99 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registrar Usuario</title>
+    <title>Registro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <h1>Registrar usuario</h1>
+    <div id="root">
+      <div class="absolute top-40 left-72 w-[80%]">
+        <!-- component -->
+        <div class="flex justify-center items-center w-full h-full bg-white">
+          <div class="container mx-auto my-4 px-4 lg:px-20">
+            <div
+              class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-none border-2 border-black shadow-xl border-2 border-black relative shadow-pop-bl"
+            >
+              <div class="flex">
+                <h1
+                  class="font-bold uppercase text-5xl"
+                  style="font-family: 'color-basic'"
+                >
+                  Registrarse
+                </h1>
+              </div>
+              <div class="grid grid-cols-2 gap-5 md:grid-cols-2 mt-5">
+                <select
+                  class="col-span-2 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Rol*"
+                  v-model="input.rol"
+                >
+                  <option disabled value="">Selecciona tu rol</option>
+                  <option value="mechanic">Mecanico</option>
+                  <option value="customer">Cliente</option>
+                </select>
+                <input
+                  class="col-span-1 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Nombe*"
+                  v-model="input.name"
+                />
+                <input
+                  class="col-span-1 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Apellido*"
+                  v-model="input.lastname"
+                />
+                <input
+                  class="col-span-1 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Documento*"
+                  v-model="input.document"
+                />
+                <input
+                  class="col-span-1 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Celular*"
+                  v-model="input.phoneNumber"
+                />
+                <input
+                  class="col-span-2 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  type="text"
+                  placeholder="Dirección*"
+                  v-model="input.address"
+                />
+                <div v-if="message">
+                  <p class="font-bold bg-red-200 text-base" style="font-family: 'trs">{{ message }}</p>
+                </div>
+              </div>
+
+              <div
+                class="col-span-1 mt-10 my-2 w-1/2 lg:w-1/4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              >
+                <button
+                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline"
+                  style="font-family: 'color-basic'"
+                  @click="register"
+                >
+                  Ingresar
+                </button>
+              </div>
+              <div class="absolute bottom-12 right-36 w-80">
+                <span class="text-md" style="font-family: 'trs">
+                  Tienes una cuenta?
+                  <a href="../index.html"
+                    ><strong>Inicia sesión Aqui!</strong></a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>

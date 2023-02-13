@@ -24,11 +24,6 @@ createApp({
             })
             localStorage.setItem('Vehicles',JSON.stringify(actually))
         },
-
-        /* 
-        funcion para efectuar la venta incluyento el IVA y guardando el resultado en LocalStorage
-        */
-
         mounted() {
         },
     }

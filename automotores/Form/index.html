@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root">
     <h1>Formulario para recibir automotores</h1>
-    <input type="text" placeholder="example" />
-    <input type="text" placeholder="example" />
-    <input type="text" placeholder="example" />
-  </body>
+    <input v-model="Nid" type="number" placeholder="Identificación" />
+    <input v-model="Name" type="text" placeholder="Nombre" />
+    <select v-model="Employee" name="" id="">
+      <option value="Fernando">Fernando</option>
+      <option value="Sebastian">Sebastian</option>
+      <option value="Camilo">Camilo</option>
+      <option value="David">David</option>
+      <option value="Oscar">Oscar</option>
+    </select>
+    <textarea v-model="Information" name="" placeholder="Información detallada" id="" cols="30" rows="10"></textarea>
+    <button @click="Join">Registrar</button>
+  </div>
+  <script src="Form.js"></script>
+</body>
+
 </html>

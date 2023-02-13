@@ -140,7 +140,7 @@
   font-family: monospace;
   white-space: nowrap;
   border-right: 4px solid;
-  width: 12ch;
+  width: 39rem;
 
   animation: typing 2s steps(12), blink 0.5s infinite step-end alternate;
   overflow: hidden;

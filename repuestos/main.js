@@ -9,6 +9,7 @@ createApp({
       Part: "",
       Amount: undefined,
       Message: undefined,
+      User: "",
     };
   },
   methods: {
@@ -186,6 +187,7 @@ createApp({
     },
   },
   mounted() {
+    this.User = JSON.parse(localStorage.getItem("user"));
     this.Parts = this.PartsGenerator();
     this.Sales = JSON.parse(localStorage.getItem("sales"));
     this.Amount = 0;

@@ -31,14 +31,30 @@
               </h1>
             </a>
           </div>
-          <div class="w-[40rem] h-10 relative">
+          <div class="w-[45rem] h-10 relative">
             <span
-              class="mt-2 writing text-lg font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              class="mt-2 -ml-28 writing text-lg font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               style="font-family: 'trs"
             >
               Tenemos todo lo necesario para la reparacion o mejora de tu
-              vehiculo.
+              vehiculo . . .
             </span>
+          </div>
+          <div
+            class="absolute right-24 border-2 ml-[20rem] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+            v-if="!User"
+          >
+            <div class="border-2 border-black relative shadow-pop-bl">
+              <button class="w-[6rem] h-[2.3rem]">
+                <a
+                  href="../Login/index.html"
+                  class="text-[1.2rem] font-semibold"
+                  style="font-family: 'trs'"
+                >
+                  Iniciar
+                </a>
+              </button>
+            </div>
           </div>
         </div>
       </nav>

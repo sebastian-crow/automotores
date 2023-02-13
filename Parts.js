@@ -7,6 +7,8 @@ createApp({
             Sales: [],
             PartialSale: [],
             Part: '',
+            Cars: undefined,
+            Car: -1,
             Amount: undefined,
             Message: undefined,
         }
@@ -19,65 +21,39 @@ createApp({
         partialSell() {
             const Part = this.Parts[this.Part];
             console.log(Part)
-                if (Part.Amount >= this.Amount) {
-                    console.log(Part.Amount)
-                    this.PartialSale.push({ 
-                        Name: Part.Name, 
-                        Amount: this.Amount, 
-                        Price: Part.Price,
-                    Total: (Part.Price*this.Amount),})
-                    console.log(this.Amount)
-                    this.Parts[this.Part].Amount -= this.Amount;
-                    this.Part = '';
-                    this.Amount = undefined;
+            if (Part.Amount >= this.Amount) {
+                console.log(Part.Amount)
+                this.PartialSale.push({
+                    Name: Part.Name,
+                    Amount: this.Amount,
+                    Price: Part.Price,
+                    Total: (Part.Price * this.Amount),
+                })
+                console.log(this.Amount)
+                this.Parts[this.Part].Amount -= this.Amount;
+                this.Part = '';
+                this.Amount = undefined;
 
-                } else {
-                    this.Message = 'Cantidad insuficiente, tenemos: ' + Part.Amount + ' unidades';
-                    console.log(this.Message);
-                }
+            } else {
+                this.Message = 'Cantidad insuficiente, tenemos: ' + Part.Amount + ' unidades';
+                console.log(this.Message);
+            }
         },
 
         /* 
         funcion para efectuar la venta incluyento el IVA y guardando el resultado en LocalStorage
         */
         sell() {
-
-
-            if ((this.Part == undefined || this.Part == '' || this.Amount == undefined || this.Amount == '') && this.PartialSale.length == 0) {
-                this.Message = 'Seleccione repuesto y cantidad';
-                console.log(this.Message)
-            } else {
-                this.partialSell();
-
-                if (!this.Amount) {
-                    const sales = this.PartialSale.reduce(function (resultado, elemento) {
-                        return resultado + elemento.Price;
-                    }, 0);
-
-                    let sale = sales + (sales * 0.19);
-
-                    this.PartialSale.push({ Sale: sale });
-
-                    // const Sales = this.Sales?.length > 0 ? [...this.Sales, this.PartialSale] : [this.PartialSale];
-                    // localStorage.setItem("Sales", JSON.stringify(Sales));
-                    // location.reload();
-
-                    if (this.Sales?.length > 0) {
-                        this.Sales.push(this.PartialSale);
-                    } else {
-                        this.Sales = [{ n: 1 }];
-                        this.Sales.push(this.PartialSale);
-                    }
-                    localStorage.setItem("Sales", JSON.stringify(this.Sales));
-
-                    this.PartialSale = [];
-
-                    this.Message = 'Venta realizada con exito';
-                    console.log(this.Message);
-                    console.log(this.Parts)
-                }
-
-            }
+            const Car = this.Cars[this.Car];
+            let sales = JSON.parse(localStorage.getItem('sales'))
+            console.log(Car);
+            console.log(sales)
+            sales.push({
+                Car: 1513,
+                Sell: this.PartialSale
+            })
+            console.log(sales)
+            localStorage.setItem('sales',JSON.stringify(sales))
         },
 
         PartsGenerator() {
@@ -129,12 +105,9 @@ createApp({
     },
     mounted() {
         this.Parts = this.PartsGenerator();
-        this.Sales = JSON.parse(localStorage.getItem("sales"));
+        localStorage.setItem('sales',JSON.stringify(this.Sales));
         this.Amount = 0;
+        this.Cars = JSON.parse(localStorage.getItem('Vehicles'))
 
     },
 }).mount("#root");
-
-
-
-

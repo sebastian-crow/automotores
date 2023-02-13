@@ -7,6 +7,7 @@ createApp({
       Sales: [],
       PartialSale: [],
       Part: undefined,
+      Car: undefined,
       Amount: undefined,
       Message: undefined,
       Flag: false,
@@ -181,6 +182,7 @@ createApp({
     this.Parts = this.PartsGenerator();
     this.Sales = JSON.parse(localStorage.getItem("sales"));
     this.Amount = 0;
+    this.Car = JSON.localStorage.getItem('Veicles');
   },
 }).mount("#root");
 

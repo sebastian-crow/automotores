@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,44 +10,51 @@
 
 <body>
     <div id="root">
-            <select v-model="Part">
+        <select v-model="Part">
             <option v-for="(part, index) in Parts" :value="index" v-show="part.Amount>0">
                 {{part.Name}}</option>
-            </select>
+        </select>
+        <select v-model="Car">
+            <option v-for="(car, index) in Cars" :value="index">
+                {{car.Nid}} - {{car.Name}}</option>
+        </select>
         <div v-show="Part!=''">
-            <label>Cantidad disponible:<label v-text="Part.Amount"></label></label>
-            <label>Precio C/U:<label v-text="Part.Price"></label></label>
-            <input type="number" v-model="Amount" max="Part.Amount" name="" id="">
-            <button @click="partialSell">press me!</button>
+            <div v-for="(part, index) in Parts" :value="index" v-show="Part==index">
+                <label>Cantidad disponible: <label v-text="Parts[index].Amount"> </label></label>
+                <label>Precio C/U: <label v-text="Parts[index].Price"></label> </label>
+                <input type="number" v-model="Amount" max="Part.Amount" name="" id="">
+                <button @click="partialSell">press me!</button>
+            </div>
         </div>
         <div>----- Cart ----</div>
         <div v-show="PartialSale.length!=0">
             <table>
                 <tr>
-                <th>
-                    Producto
-                </th>
-                <th>
-                    Precio
-                </th>
-                <th>
-                    Cantidad
-                </th>
-                <th>
-                    Total
-                </th>
+                    <th>
+                        Producto
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Total
+                    </th>
                 </tr>
                 <tr v-for="(product, index) in PartialSale" :value="index" :key="index">
-                    <td>{{product.Name}}</td>                    
-                    <td>{{product.Price}}</td>
+                    <td>{{product.Name}}</td>
+                    <td>$ {{product.Price}}</td>
                     <td>{{product.Amount}}</td>
-                    <td>{{product.Total}}</td>
+                    <td>$ {{product.Total}}</td>
                 </tr>
             </table>
         </div>
         <div v-show="PartialSale.length==0">
-            <label >sin elementos</label>
+            <label>sin elementos</label>
         </div>
+        <button @click="sell" v-show="Car!=-1 && PartialSale.length!=0">Continuar</button>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

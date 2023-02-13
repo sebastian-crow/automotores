@@ -185,6 +185,11 @@ createApp({
         },
       ];
     },
+
+    logout() {
+      localStorage.removeItem("user");
+      window.location.href = "../Repuestos/index.html";
+    },
   },
   mounted() {
     this.User = JSON.parse(localStorage.getItem("user"));

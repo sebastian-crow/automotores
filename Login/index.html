@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="root">
@@ -41,7 +42,16 @@
                   class="col-span-2 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
                   type="text"
                   placeholder="Documento*"
+                  v-model="input.document"
                 />
+                <div v-if="message" class="w-full">
+                  <p
+                    class="font-bold bg-red-200 text-base"
+                    style="font-family: 'trs"
+                  >
+                    {{ message }}
+                  </p>
+                </div>
               </div>
 
               <div
@@ -50,6 +60,7 @@
                 <button
                   class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline"
                   style="font-family: 'color-basic'"
+                  @click="login"
                 >
                   Ingresar
                 </button>
@@ -67,5 +78,6 @@
         </div>
       </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>

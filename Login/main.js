@@ -8,33 +8,35 @@ createApp({
         document: "",
       },
       users: [],
+      message: "",
     };
   },
   methods: {
     login() {
-      if (this.input.rol != "" && this.input.document != "") {
+      if (this.input.rol !== "" && this.input.document !== "") {
         const user = this.users.find(
           (user) =>
             user.rol === this.input.rol && user.document == this.input.document
         );
-        if (
-          this.input.rol === user.rol &&
-          this.input.document == user.document
-        ) {
-          const userToStore = {
-            rol: user.rol,
-            document: CryptoJS.SHA512(user.document),
-          };
-          localStorage.setItem("user", JSON.stringify(userToStore));
+        if (user) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              rol: user.rol,
+              document: CryptoJS.SHA512(user.document),
+            })
+          );
+          window.location.href = "../Repuestos/index.html";
         } else {
-          console.log("Rol o documento incorrecto");
+          this.message = "Rol o documento incorrecto";
         }
       } else {
-        console.log("El rol y el documento deben ser ingresadosF");
+        this.message = "El rol y el documento deben ser ingresados";
       }
     },
   },
   mounted() {
     this.users = JSON.parse(localStorage.getItem("users"));
+    console.log(this.users);
   },
 }).mount("#root");

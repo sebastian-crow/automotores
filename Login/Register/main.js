@@ -13,6 +13,7 @@ createApp({
       },
       users: [],
       message: "",
+      success: "",
     };
   },
   methods: {
@@ -49,11 +50,14 @@ createApp({
             "users",
             JSON.stringify([...this.users, newUser])
           );
-          alert("Usuario nuevo agregado con exito");
+          this.success = "Usuario nuevo agregado con exito";
+          setTimeout(() => {
+            window.location.href = "../index.html";
+          }, 1500);
           return;
         }
         localStorage.setItem("users", JSON.stringify([newUser]));
-        alert("Array vacio con un usuario");
+        this.success = "Usuario nuevo agregado con exito";
       } else {
         this.message = "Debes llenar todos los campos";
       }

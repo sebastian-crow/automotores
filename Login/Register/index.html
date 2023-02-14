@@ -69,7 +69,20 @@
                   v-model="input.address"
                 />
                 <div v-if="message">
-                  <p class="font-bold bg-red-200 text-base" style="font-family: 'trs">{{ message }}</p>
+                  <p
+                    class="font-bold bg-red-200 text-base"
+                    style="font-family: 'trs"
+                  >
+                    {{ message }}
+                  </p>
+                </div>
+                <div v-if="success">
+                  <p
+                    class="font-bold bg-green-200 text-base"
+                    style="font-family: 'trs"
+                  >
+                    {{ success }}
+                  </p>
                 </div>
               </div>
 
@@ -77,7 +90,7 @@
                 class="col-span-1 mt-10 my-2 w-1/2 lg:w-1/4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               >
                 <button
-                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline"
+                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
                   style="font-family: 'color-basic'"
                   @click="register"
                 >

@@ -194,6 +194,7 @@ createApp({
   mounted() {
     this.User = JSON.parse(localStorage.getItem("user"));
     this.Parts = this.PartsGenerator();
+    localStorage.setItem("Parts", JSON.stringify(this.Parts));
     this.Sales = JSON.parse(localStorage.getItem("sales"));
     this.Amount = 0;
     console.log("parts", this.Parts);

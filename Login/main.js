@@ -26,7 +26,7 @@ createApp({
               document: CryptoJS.SHA512(user.document),
             })
           );
-          window.location.href = "../Repuestos/index.html";
+          window.location.href = "./User/index.html";
         } else {
           this.message = "Rol o documento incorrecto";
         }

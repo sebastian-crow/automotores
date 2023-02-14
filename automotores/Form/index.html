@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../style.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="root">
@@ -14,10 +16,13 @@
         <div class="flex justify-center items-center w-full h-full bg-white">
           <div class="container mx-auto my-4 px-4 lg:px-20">
             <div
-              class="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-none border-2 border-black shadow-xl"
+              class="z-2 w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-none border-2 border-black shadow-xl border-2 border-black relative shadow-pop-bl"
             >
               <div class="flex">
-                <h1 class="font-bold uppercase text-5xl">
+                <h1
+                  class="font-bold uppercase text-5xl"
+                  style="font-family: 'color-basic'"
+                >
                   Ingresar <br />
                   Vehiculo
                 </h1>
@@ -25,34 +30,155 @@
               <div class="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
                 <input
                   class="w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
-                  type="text"
-                  placeholder="First Name*"
+                  style="font-family: 'trs'"
+                  placeholder="Nombre*"
+                  v-model="input.name"
                 />
                 <input
-                  class="w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  class="w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
                   type="text"
-                  placeholder="Last Name*"
+                  placeholder="Apellido*"
+                  v-model="input.lastname"
                 />
+                <select
+                  class="col-span-1 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
+                  placeholder="Tipo documento*"
+                  v-model="input.documentType"
+                >
+                  <option disabled value="">
+                    Selecciona el tipo de documento
+                  </option>
+                  <option value="NIT">NIT</option>
+                  <option value="CC">Cedula Ciudadania</option>
+                </select>
                 <input
                   class="w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
                   type="email"
-                  placeholder="Email*"
+                  placeholder="Documento*"
+                  v-model="input.document"
+                />
+
+                <div
+                  class="relative col-span-1 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                >
+                  <span class="m-2" style="font-family: 'trs'"
+                    >Para cuando lo necesitas?</span
+                  >
+
+                  <input
+                    class="w-full shadow-md text-black w-full mt-8 border-2 tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline relative shadow-pop-bl"
+                    style="font-family: 'trs'"
+                    type="date"
+                    placeholder="Para cuando lo necesitas?*"
+                    v-model="input.deliveryDate"
+                  />
+                </div>
+                <div class="col-san-1 grid grid-rows-2">
+                  <input
+                    class="row-span-1 w-full h-14 shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                    style="font-family: 'trs'"
+                    type="text"
+                    placeholder="Ingresa tu Dirección*"
+                    v-model="input.address"
+                  />
+                  <input
+                    class="row-span-2 w-full h-14 shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                    style="font-family: 'trs'"
+                    type="text"
+                    placeholder="Número Celular*"
+                    v-model="input.phoneNumber"
+                  />
+                </div>
+
+                <select
+                  class="col-span-2 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
+                  placeholder="Tipo de vehiculo*"
+                  v-model="input.vehicleType"
+                >
+                  <option disabled value="">
+                    Selecciona el tipo de vehiculo
+                  </option>
+                  <option value="suv">SUV</option>
+                  <option value="hatchback">Hatchback</option>
+                  <option value="crossover">Crossover</option>
+                  <option value="convertible">Convertible</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="sportsCar">Sports Car</option>
+                  <option value="minivan">Minivan</option>
+                  <option value="coupe">Coupe</option>
+                  <option value="wagon">Station Wagon</option>
+                  <option value="pickup">Camionetas Pickup</option>
+                  <option value="bus">Bus</option>
+                  <option value="miniBus">Buseta</option>
+                  <option value="truck">Camioneta</option>
+                  <option value="allRounder">Todo Terreno</option>
+                </select>
+                <input
+                  class="col-span-2 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
+                  type="text"
+                  placeholder="Tipo de vehiculo detallado"
+                  v-model="input.vehicleTypeDetail"
                 />
                 <input
-                  class="w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
-                  type="number"
-                  placeholder="Phone*"
+                  class="col-span-2 w-full shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
+                  type="text"
+                  placeholder="Placas de tu vehiculo*"
+                  v-model="input.licensePlates"
                 />
+
+                <div
+                  class="relative col-span-2 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                >
+                  <span class="m-2" style="font-family: 'trs'"
+                    >Que repuestos necesitas?</span
+                  >
+
+                  <select
+                    class="w-full mt-8 border-2 tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline relative shadow-pop-bl"
+                    style="font-family: 'trs'"
+                    placeholder="Repuestos*"
+                    id="partsSelect"
+                    v-model="input.parts"
+                  ></select>
+                </div>
+                <div v-if="message">
+                  <p
+                    class="font-bold bg-red-200 text-base"
+                    style="font-family: 'trs"
+                  >
+                    {{ message }}
+                  </p>
+                </div>
+                <div v-if="success">
+                  <p
+                    class="font-bold bg-green-200 text-base"
+                    style="font-family: 'trs"
+                  >
+                    {{ success }}
+                  </p>
+                </div>
               </div>
               <div class="my-4">
                 <textarea
-                  placeholder="Message*"
+                  placeholder="Falla Detallada del vehiculo*"
                   class="w-full h-32 shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
+                  style="font-family: 'trs'"
+                  v-model="input.details"
                 ></textarea>
               </div>
-              <div class="my-2 w-1/2 lg:w-1/4">
+              <div
+                class="my-2 w-1/2 lg:w-1/4 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              >
                 <button
-                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline"
+                  class="uppercase text-sm font-bold tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                  style="font-family: 'color-basic'"
+                  @click="enter"
                 >
                   Ingresar
                 </button>
@@ -60,59 +186,84 @@
             </div>
 
             <div
-              class="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-black rounded-none"
+              class="z-20 w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-black rounded-none border-black shadow-xl border-2 border-black relative shadow-pop-bl"
             >
-              <div class="flex flex-col text-white">
-                <h1 class="font-bold uppercase text-4xl my-4">
-                  Drop in our office
+              <div class="flex flex-col text-white z-20">
+                <h1
+                  class="font-bold uppercase text-4xl my-4"
+                  style="font-family: 'color-basic'"
+                >
+                  Factura A Generar
                 </h1>
-                <p class="text-gray-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Aliquam tincidunt arcu diam, eu feugiat felis fermentum id.
-                  Curabitur vitae nibh viverra, auctor turpis sed, scelerisque
-                  ex.
-                </p>
 
-                <div class="flex my-4 w-2/3 lg:w-1/2">
+                <div class="flex my-4 w-2/3 lg:w-full">
                   <div class="flex flex-col">
                     <i class="fas fa-map-marker-alt pt-2 pr-2" />
                   </div>
-                  <div class="flex flex-col">
-                    <h2 class="text-2xl">Main Office</h2>
+                  <div class="flex flex-col" style="font-family: 'trs'">
+                    <h2 class="text-2xl" v-show="input.name">Para</h2>
                     <p class="text-gray-400">
-                      5555 Tailwind RD, Pleasant Grove, UT 73533
+                      {{input.name}} {{ input.lastname}}
+                    </p>
+                    <p class="text-gray-400" v-show="input.documentType">
+                      Tipo de documento: {{ input.documentType }}
+                    </p>
+                    <p class="text-gray-400" v-show="input.document">
+                      Documento: {{ input.document }}
+                    </p>
+                    <p class="text-gray-400" v-show="input.deliveryDate">
+                      Fecha entrega: {{ input.deliveryDate}}
+                    </p>
+                    <p class="text-gray-400" v-show="input.address">
+                      Dirección: {{ input.address}}
+                    </p>
+                    <p class="text-gray-400" v-show="input.phoneNumber">
+                      Celular: {{ input.phoneNumber}}
+                    </p>
+                  </div>
+                  <br />
+                  <div
+                    class="flex flex-col max-h-1/2"
+                    style="font-family: 'trs'"
+                  >
+                    <h2
+                      class="text-2xl"
+                      v-show="input.vehicleType || input.vehicleTypeDetail"
+                    >
+                      Vehiculo
+                    </h2>
+                    <p class="text-gray-400" v-show="input.vehicleType">
+                      Tipo vehiculo: {{ input.vehicleType }}
+                    </p>
+                    <p class="text-gray-400" v-show="input.licensePlates">
+                      Número Placa: {{ input.licensePlates }}
+                    </p>
+                  </div>
+                  <br />
+                  <div
+                    class="flex flex-col max-h-1/2"
+                    style="font-family: 'trs'"
+                  >
+                    <h2 class="text-2xl" v-show="input.parts">Repuestos</h2>
+                    <p class="text-gray-400" v-show="input.parts">
+                      {{ input.parts }}
                     </p>
                   </div>
                 </div>
 
-                <div class="flex my-4 w-2/3 lg:w-1/2">
+                <div
+                  class="flex my-4 w-2/3 lg:w-full"
+                  v-if="input.details"
+                  style="font-family: 'trs'"
+                >
                   <div class="flex flex-col">
                     <i class="fas fa-phone-alt pt-2 pr-2" />
                   </div>
                   <div class="flex flex-col">
-                    <h2 class="text-2xl">Call Us</h2>
+                    <h2 class="text-2xl">Llamanos</h2>
                     <p class="text-gray-400">Tel: xxx-xxx-xxx</p>
-                    <p class="text-gray-400">Fax: xxx-xxx-xxx</p>
+                    <p class="text-gray-400">Email: xxx-xxx@xxx.com</p>
                   </div>
-                </div>
-
-                <div class="flex my-4 w-2/3 lg:w-1/2">
-                  <a
-                    href="https://www.facebook.com/ENLIGHTENEERING/"
-                    target="_blank"
-                    rel="noreferrer"
-                    class="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1"
-                  >
-                    <i class="fab fa-facebook-f text-blue-900" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/enlighteneering-inc-"
-                    target="_blank"
-                    rel="noreferrer"
-                    class="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1"
-                  >
-                    <i class="fab fa-linkedin-in text-blue-900" />
-                  </a>
                 </div>
               </div>
             </div>
@@ -120,5 +271,6 @@
         </div>
       </div>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>

@@ -23,7 +23,7 @@ createApp({
             "user",
             JSON.stringify({
               rol: user.rol,
-              document: CryptoJS.SHA512(user.document),
+              document: user.document,
             })
           );
           window.location.href = "./User/index.html";

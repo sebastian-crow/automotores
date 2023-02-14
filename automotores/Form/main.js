@@ -43,14 +43,15 @@ createApp({
           documentType: this.input.documentType,
           document: this.input.document,
           address: this.input.address,
-          dateOfEntry: this.input.dateOfEntr,
-          deliveryDate: new Date(),
+          dateOfEntry: new Date(),
+          deliveryDate: this.input.deliveryDate,
           vehicleType: this.input.vehicleType,
           vehicleTypeDetail: this.input.vehicleTypeDetail,
           licensePlates: this.input.licensePlates,
           details: this.input.details,
           parts: this.input.parts,
           orderNumber: `#${Date.now()}`,
+          mechanic: "",
         };
         if (this.orders?.length > 0) {
           localStorage.setItem(

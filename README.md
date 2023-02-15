@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="#"><img src="./Img/Preview.jpeg" alt="Automotores" width="400"></a>
+  <a href="#"><img src="./Img/Preview.gif" alt="Automotores" width="400"></a>
   <br>
   Automotores
   <br>
@@ -15,7 +15,7 @@
   
 </p>
 
-![screenshot](./Img/Preview.gif)
+![screenshot](./Img/Preview.jpeg)
 
 ## How To Use
 
@@ -43,8 +43,5 @@ MIT
 
 ---
 
-> [SebastianCrow](https://github.com/sebastian-crow) <br>
-> [David Ospina](https://github.com/megof)  
+> [SebastianCrow](https://github.com/sebastian-crow) <br> > [David Ospina](https://github.com/megof)  
 > [Camilo Burbano](https://github.com/CamiloBurbano82)
-
-

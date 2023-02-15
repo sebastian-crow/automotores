@@ -43,5 +43,6 @@ MIT
 
 ---
 
-> [SebastianCrow](https://github.com/sebastian-crow) <br> > [David Ospina](https://github.com/megof)  
+> [SebastianCrow](https://github.com/sebastian-crow) <br> 
+> [David Ospina](https://github.com/megof)  
 > [Camilo Burbano](https://github.com/CamiloBurbano82)

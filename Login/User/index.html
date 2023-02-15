@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <div id="root">
+    <div id="root" class="bg-black">
       <div
         class="fixed top-16 left-16 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       >
@@ -57,7 +57,7 @@
                     <h1
                       class="absolute top-14 right-16 text-2xl font-extrabold"
                     >
-                       Factura {{ order.orderNumber }}
+                      Factura {{ order.orderNumber }}
                     </h1>
                   </div>
                 </div>
@@ -275,8 +275,26 @@
           </div>
         </section>
       </div>
-      <div v-else>
-        <h1>No tienes ordenes</h1>
+      <div v-else class="bg-black w-full h-screen">
+        <div
+          class="z-20 fixed top-72 left-[33rem] w-96 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        >
+          <div
+            class="rounded-none border-2 border-black shadow-xl border-2 border-black shadow-pop-bl"
+          >
+            <h1
+              class="font-bold uppercase text-xl bg-yellow-200"
+              style="font-family: 'color-basic'"
+            >
+              Al parecer no tienes ordenes para listar, que tal si creamos una?
+              <a href="../.././automotores/Form/index.html"
+                ><code style="font-family: 'color-basic'" class="text-sm"
+                  >Aquí</code
+                ></a
+              >
+            </h1>
+          </div>
+        </div>
       </div>
     </div>
     <script src="main.js"></script>

@@ -23,7 +23,7 @@ createApp({
       success: "",
       orders: [],
       localParts: [],
-      partsToRender: [],
+      User: [],
     };
   },
   methods: {
@@ -90,6 +90,7 @@ createApp({
     },
   },
   mounted() {
+    this.User = JSON.parse(localStorage.getItem("user"));
     this.parts = JSON.parse(localStorage.getItem("Parts"));
     this.orders = JSON.parse(localStorage.getItem("orders"));
     this.populateParts();

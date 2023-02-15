@@ -21,6 +21,23 @@
           <img src="../../Img/right-arrow-svgrepo-com.svg" alt="" width="60" />
         </a>
       </div>
+      <div
+        class="z-20 fixed top-24 right-28 w-72 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        v-if="!User"
+      >
+        <div
+          class="rounded-none border-2 border-black shadow-xl border-2 border-black shadow-pop-bl"
+        >
+          <h1
+            class="font-bold uppercase text-xl bg-yellow-200"
+            style="font-family: 'color-basic'"
+          >
+            Recuerda que debes iniciar sesión para ingresar tu vehiculo, de lo
+            contrario tu solicitud no será recibida.
+          </h1>
+        </div>
+      </div>
+
       <div class="absolute top-14 left-20 w-[90%]">
         <!-- component -->
         <div class="flex justify-center items-center w-full h-full bg-white">
@@ -257,7 +274,9 @@
                     class="flex flex-col max-h-1/2"
                     style="font-family: 'trs'"
                   >
-                    <h2 class="text-2xl" v-show="input.parts.length">Repuestos</h2>
+                    <h2 class="text-2xl" v-show="input.parts.length">
+                      Repuestos
+                    </h2>
                     <p class="text-gray-400" v-show="input.parts.length">
                       La lista de repuestos se verá reflejada en tu factura
                     </p>

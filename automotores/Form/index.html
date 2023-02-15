@@ -149,14 +149,16 @@
                     >Que repuestos necesitas?</span
                   >
 
-                  <select
-                    id="multiple-select"
-                    multiple
-                    style="font-family: 'trs'"
-                    placeholder="Repuestos*"
-                    class="w-full mt-8 border-2 tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline relative shadow-pop-bl"
-                    v-model="input.parts"
-                  ></select>
+                  <div class="m-4 w-full">
+                    <select
+                      id="multiple-select"
+                      multiple
+                      style="font-family: 'trs'"
+                      placeholder="Repuestos*"
+                      class="w-full mt-8 border-2 tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline relative shadow-pop-bl"
+                      v-model="input.parts"
+                    ></select>
+                  </div>
                 </div>
                 <div v-if="message">
                   <p
@@ -255,9 +257,9 @@
                     class="flex flex-col max-h-1/2"
                     style="font-family: 'trs'"
                   >
-                    <h2 class="text-2xl" v-show="input.parts">Repuestos</h2>
-                    <p class="text-gray-400" v-show="input.parts">
-                      {{ input.parts }}
+                    <h2 class="text-2xl" v-show="input.parts.length">Repuestos</h2>
+                    <p class="text-gray-400" v-show="input.parts.length">
+                      La lista de repuestos se verá reflejada en tu factura
                     </p>
                   </div>
                 </div>

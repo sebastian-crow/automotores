@@ -109,6 +109,7 @@ createApp({
           url: "https://t1.uc.ltmcdn.com/es/posts/4/9/2/amortiguadores_hidraulicos_para_coches_49294_0_600.jpg",
           description:
             "El amortiguador es uno de los elementos que conforman la suspensión de un vehículo. Su función es la de limitar el movimiento de la suspensión, evitando el rebote constante de los muelles",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Luces",
@@ -117,6 +118,7 @@ createApp({
           url: "https://resizer.glanacion.com/resizer/3-w5R9gV90Vq8XlP7lZIdVSMC7Q=/768x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/COHU2PETZVFQ7PYLTSGYPGMN5M.jpg",
           description:
             "Las luces situadas en la parte delantera, lateral y trasera de un automóvil son unos elementos de seguridad básicos que tienen como finalidad proveer de iluminación al conductor",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Baterías",
@@ -125,6 +127,7 @@ createApp({
           url: "https://i0.wp.com/blog.soyrappi.com/wp-content/uploads/2020/02/Bater%C3%ADa-de-carro.jpg?fit=1674%2C1121&ssl=1",
           description:
             " Las baterías para carro se encargan de acumular y suministrar la corriente eléctrica del vehículo, para que este pueda funcionar con normalidad. Baterias recargables",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Llantas",
@@ -134,6 +137,7 @@ createApp({
           url: "https://www.carroya.com/noticias/sites/default/files/entradillas/506024311carroya-llantasparacarros.jpg",
           description:
             "Es una pieza generalmente circular y metálica, aunque su forma varía en relación al tipo y tamaño del vehículo. Se sitúa en el centro de la rueda, sobre la que se coloca un neumatico.  ",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Espejos",
@@ -142,6 +146,7 @@ createApp({
           url: "https://www.comparaonline.cl/blog-statics/cl/uploads/2015/06/Espejo_retrovisor_del_carro_jf8clj.jpg",
           description:
             "Los espejos retrovisores son dispositivos que permiten visualizar los vehículos, objetos y personas que están detrás del coche, para evitar el peligro que significa mirar hacia atrás o hacia los lados girando la cabeza o el cuerpo.",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Rines",
@@ -150,6 +155,7 @@ createApp({
           url: "https://i.pinimg.com/736x/36/52/83/36528361aa5324fd5c612cfed5f05ef0.jpg",
           description:
             "Los rines vienen en diferentes materiales como aluminio, acero, magnesio y de aleación. A grandes rasgos sus características principales por material son: Aluminio: El más común, ligero, bastante resistente y accesible en costo",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Neumáticos",
@@ -158,6 +164,7 @@ createApp({
           url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hand-finger-checking-tire-royalty-free-image-1634225316.jpg?crop=0.669xw:1.00xh;0.189xw,0&resize=640:*",
           description:
             "Un neumático es una pieza de caucho con forma toroidal que forma parte de las ruedas de un automóvil y suelen ir protegidos por llantas de metal. Puede que los neumáticos reciban otros nombres como cubierta, goma o caucho.",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Antenas",
@@ -166,6 +173,7 @@ createApp({
           url: "https://http2.mlstatic.com/D_NQ_NP_783383-MLM47475550205_092021-O.jpg",
           description:
             "La antena del coche es un dispositivo que tiene como función captar las ondas electromagnéticas del espacio. Así pues, es el medio de comunicación entre el exterior y el interior del vehículo. Radio AM, FM y DAB.  ",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Filtros",
@@ -174,6 +182,7 @@ createApp({
           url: "https://noticias.coches.com/wp-content/uploads/2015/01/filtro-aire-1-700x466.jpg",
           description:
             "Es una parte esencial del motor.La función primordial de los filtros es neutralizar los contaminantes y eliminar malos olores y sabores del agua. Disminuyendo la contaminación",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
         {
           Name: "Vidrios",
@@ -182,6 +191,7 @@ createApp({
           url: "https://norisk.mx/wp-content/uploads/2020/07/REEMPLAZO-PARABRISAS-1024x684.jpg",
           description:
             "Los cristales son parte fundamental en un automóvil, hacen parte de la seguridad activa y pasiva, a demás de permitir la visibilidad del conductor del camino y todo el entorno.",
+          id: Math.floor(Math.random() * 125) + Date.now(),
         },
       ];
     },

@@ -8,6 +8,7 @@ createApp({
         lastname: "",
         documentType: "",
         document: "",
+        phoneNumber: "",
         address: "",
         dateOfEntry: "",
         deliveryDate: "",
@@ -15,12 +16,13 @@ createApp({
         vehicleTypeDetail: "",
         licensePlates: "",
         details: "",
-        parts: "",
+        parts: [],
       },
       parts: [],
       message: "",
       success: "",
       orders: [],
+      localParts: [],
     };
   },
   methods: {
@@ -30,6 +32,7 @@ createApp({
         this.input.lastname !== "" &&
         this.input.documentType !== "" &&
         this.input.document !== "" &&
+        this.input.phoneNumber !== "" &&
         this.input.address !== "" &&
         this.input.deliveryDate !== "" &&
         (this.input.vehicleType !== "" || this.input.vehicleTypeDetail) &&
@@ -42,6 +45,7 @@ createApp({
           lastname: this.input.lastname,
           documentType: this.input.documentType,
           document: this.input.document,
+          phoneNumber: this.input.phoneNumber,
           address: this.input.address,
           dateOfEntry: new Date(),
           deliveryDate: this.input.deliveryDate,
@@ -76,17 +80,19 @@ createApp({
     },
 
     populateParts() {
-      var select = document.getElementById("partsSelect");
-      for (var i = 0; i <= this.parts?.length; i++)
-        select.options.add(
-          new Option(this.parts[i]?.Name, this.parts[i]?.Price)
-        );
+      var select = document.getElementById("multiple-select");
+      for (var i = 0; i <= this.parts?.length; i++) {
+        select.options.add(new Option(this.parts[i]?.Name, this.parts[i]?.id));
+
+        this.localParts.push(this.parts[i]);
+      }
     },
   },
   mounted() {
     this.parts = JSON.parse(localStorage.getItem("Parts"));
     this.orders = JSON.parse(localStorage.getItem("orders"));
     this.populateParts();
-    console.log();
+    console.log(this.localParts[0].Price);
+    console.log(this.input.parts);
   },
 }).mount("#root");

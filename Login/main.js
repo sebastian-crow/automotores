@@ -14,7 +14,7 @@ createApp({
   methods: {
     login() {
       if (this.input.rol !== "" && this.input.document !== "") {
-        const user = this.users.find(
+        const user = this.users?.find(
           (user) =>
             user.rol === this.input.rol && user.document == this.input.document
         );

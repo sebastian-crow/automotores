@@ -55,9 +55,9 @@
                       Automotores Facturación Electronica
                     </p>
                     <h1
-                      class="absolute top-14 right-16 text-2xl text-extrabold"
+                      class="absolute top-14 right-16 text-2xl font-extrabold"
                     >
-                      Factura {{ order.orderNumber }}
+                       Factura {{ order.orderNumber }}
                     </h1>
                   </div>
                 </div>
@@ -87,7 +87,7 @@
                         </p>
                         <p>{{ order.orderNumber}}</p>
 
-                        <p class="mt-2 text-sm font-normal text-slate-700">
+                        <p class="mt-2 text-sm font-bold text-slate-700">
                           Fecha Ingreso
                         </p>
                         <p>{{ order.dateOfEntry}}</p>
@@ -134,13 +134,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="border-b border-slate-200">
+                        <tr
+                          class="border-b border-slate-200"
+                          v-for="part in partsPerUser"
+                        >
                           <td class="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
                             <div class="font-medium text-slate-700">
-                              {{ order.parts}}
+                              {{ part.Name}}
                             </div>
                             <div class="mt-0.5 text-slate-500 sm:hidden">
-                              1 unidad a {{ order.parts}}
+                              1 unidad a {{ part.Price}} COP
                             </div>
                           </td>
                           <td
@@ -151,12 +154,12 @@
                           <td
                             class="hidden px-3 py-4 text-base text-right text-slate-500 sm:table-cell"
                           >
-                            {{ order.parts }} COP
+                            {{ part.Price }} COP
                           </td>
                           <td
                             class="py-4 pl-3 pr-4 text-base text-right text-slate-500 sm:pr-6 md:pr-0"
                           >
-                            {{ order.parts }} COP
+                            {{ part.Price }} COP
                           </td>
                         </tr>
                       </tbody>
@@ -178,7 +181,7 @@
                           <td
                             class="pt-6 pl-3 pr-4 text-base text-right text-slate-500 sm:pr-6 md:pr-0"
                           >
-                            {{ order.parts }} COP
+                            {{ partsPerUser[4].subTotal }} COP
                           </td>
                         </tr>
                         <tr>
@@ -238,7 +241,7 @@
                           <td
                             class="pt-4 pl-3 pr-4 text-base font-bold text-right text-slate-700 sm:pr-6 md:pr-0"
                           >
-                            {{ order.parts}} COP
+                            {{ partsPerUser[5].total}} COP
                           </td>
                         </tr>
                       </tfoot>
@@ -273,7 +276,7 @@
         </section>
       </div>
       <div v-else>
-        <h1>No tienes ordenes </h1>
+        <h1>No tienes ordenes</h1>
       </div>
     </div>
     <script src="main.js"></script>

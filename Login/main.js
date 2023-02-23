@@ -14,7 +14,7 @@ createApp({
   methods: {
     login() {
       if (this.input.rol !== "" && this.input.document !== "") {
-        const user = this.users?.find(
+        const user = this.users.find(
           (user) =>
             user.rol === this.input.rol && user.document == this.input.document
         );
@@ -26,7 +26,7 @@ createApp({
               document: user.document,
             })
           );
-          window.location.href = "./User/index.html";
+          location.href = "./User/index.html";
         } else {
           this.message = "Rol o documento incorrecto";
         }
@@ -35,8 +35,8 @@ createApp({
       }
     },
   },
-  mounted() {
+  beforeMount() {
     this.users = JSON.parse(localStorage.getItem("users"));
-    console.log(this.users);
   },
+  mounted() {},
 }).mount("#root");

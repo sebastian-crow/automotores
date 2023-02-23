@@ -57,6 +57,7 @@ createApp({
           parts: this.input.parts,
           orderNumber: `#${Date.now()}`,
           mechanic: "",
+          user: this.User,
         };
         if (this.orders?.length > 0) {
           localStorage.setItem(
@@ -65,23 +66,23 @@ createApp({
           );
           this.success = "Su orden ha sido recibida correctamente";
           setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+            location.href = "../../Login/User/index.html";
+          }, 1500);
           return;
         }
 
         localStorage.setItem("orders", JSON.stringify([newOrder]));
         this.success = "Su orden ha sido recibida correctamente";
         setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+          location.href = "../../Login/User/index.html";
+        }, 1500);
       } else {
         this.message = "Debes llenar todos los campos obligatorios";
       }
     },
 
     populateParts() {
-      var select = document.getElementById("multiple-select");
+      var select = document.getElementById("partsSelect");
       for (var i = 0; i <= this.parts?.length; i++) {
         select.options.add(new Option(this.parts[i]?.Name, this.parts[i]?.id));
 
@@ -94,5 +95,6 @@ createApp({
     this.parts = JSON.parse(localStorage.getItem("Parts"));
     this.orders = JSON.parse(localStorage.getItem("orders"));
     this.populateParts();
+    console.log(this.User.document);
   },
 }).mount("#root");

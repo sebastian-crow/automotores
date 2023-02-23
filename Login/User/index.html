@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <div id="root" class="bg-black">
+    <div id="user" class="bg-black">
       <div
         class="fixed top-16 left-16 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       >
@@ -34,7 +34,7 @@
       <div v-if="orderPerUser.length > 0">
         <section
           class="py-20 bg-black"
-          v-for="order in orderPerUser"
+          v-for="order in orderPerUser[0]"
           style="font-family: 'trs"
         >
           <div
@@ -58,6 +58,11 @@
                       class="absolute top-14 right-16 text-2xl font-extrabold"
                     >
                       Factura {{ order.orderNumber }}
+                    </h1>
+                    <h1
+                      class="absolute top-24 bg-yellow-200 right-16 text-xl font-extrabold"
+                    >
+                      3 meses de garantia
                     </h1>
                   </div>
                 </div>
@@ -181,7 +186,7 @@
                           <td
                             class="pt-6 pl-3 pr-4 text-base text-right text-slate-500 sm:pr-6 md:pr-0"
                           >
-                            {{ partsPerUser[4].subTotal }} COP
+                            <!--   {{ partsPerUser[4].subTotal }} COP -->
                           </td>
                         </tr>
                         <tr>
@@ -241,7 +246,7 @@
                           <td
                             class="pt-4 pl-3 pr-4 text-base font-bold text-right text-slate-700 sm:pr-6 md:pr-0"
                           >
-                            {{ partsPerUser[5].total}} COP
+                            <!-- {{ partsPerUser[5].total}} COP -->
                           </td>
                         </tr>
                       </tfoot>

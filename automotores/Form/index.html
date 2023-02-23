@@ -9,20 +9,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../style.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link href="./css/mobiscroll.javascript.min.css" rel="stylesheet" />
-    <script src="./js/mobiscroll.javascript.min.js"></script>
+    <!--    <link href="./css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="./js/mobiscroll.javascript.min.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #b9b9b9;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #1d1e1e;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2c3333;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
       <div
-        class="z-20 fixed top-20 left-12 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        class="z-20 fixed top-28 left-12 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       >
         <a href="../../index.html">
           <img src="../../Img/right-arrow-svgrepo-com.svg" alt="" width="60" />
         </a>
       </div>
       <div
-        class="z-20 fixed top-24 right-28 w-72 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        class="z-20 fixed top-28 right-12 w-72 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
         v-if="!User"
       >
         <div
@@ -38,7 +69,7 @@
         </div>
       </div>
 
-      <div class="absolute top-14 left-20 w-[90%]">
+      <div class="absolute top-14 left-28 w-[90%]">
         <!-- component -->
         <div class="flex justify-center items-center w-full h-full bg-white">
           <div class="container mx-auto my-4 px-4 lg:px-20">
@@ -166,15 +197,17 @@
                     >Que repuestos necesitas?</span
                   >
 
-                  <div class="m-4 w-full">
+                  <div class="m-4 w-[95%]">
                     <select
-                      id="multiple-select"
-                      multiple
+                      id="partsSelect"
                       style="font-family: 'trs'"
-                      placeholder="Repuestos*"
-                      class="w-full mt-8 border-2 tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline relative shadow-pop-bl"
+                      class="form-control selectpicker w-full mt-8 hover:text-white border-2 bg-black text-white p-3 rounded-none focus:outline-none focus:shadow-outline focus:bg-black relative shadow-pop-bl"
+                      multiple
                       v-model="input.parts"
-                    ></select>
+                      placeholder="Repuestos"
+                    >
+                      <option value="" disabled>Repuestos</option>
+                    </select>
                   </div>
                 </div>
                 <div v-if="message">
@@ -303,8 +336,10 @@
         </div>
       </div>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script src="main.js"></script>
-    <script>
+    <!--     <script>
       mobiscroll.select("#multiple-select", {
         inputElement: document.getElementById("my-input"),
         touchUi: false,
@@ -319,6 +354,6 @@
       mobiscroll.select("#demo-multiple-select", {
         inputElement: document.getElementById("demo-multiple-select-input"),
       });
-    </script>
+    </script> -->
   </body>
 </html>

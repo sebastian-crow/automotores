@@ -10,6 +10,32 @@ createApp({
       Amount: undefined,
       Message: undefined,
       User: "",
+      Mechanics: [
+        {
+          rol: "mechanic",
+          document: 10203040,
+          name: "Juan",
+          lastname: "Mecanico",
+          address: "La calle dorada, arriba del D1 constantinopla",
+          phoneNumber: "+50 316 4980198",
+        },
+        {
+          rol: "mechanic",
+          document: 20305060,
+          name: "Sergio",
+          lastname: "Barras",
+          address: "Puente aviador diagonal Cr 56 # 401",
+          phoneNumber: "+50 320 3450976",
+        },
+        {
+          rol: "mechanic",
+          document: 12458709,
+          name: "Emmanuel",
+          lastname: "Gallego",
+          address: "Villaroca guayabal 12 # 78 - 09",
+          phoneNumber: "+50 313 3776661",
+        },
+      ],
     };
   },
   methods: {
@@ -225,6 +251,7 @@ createApp({
     this.User = JSON.parse(localStorage.getItem("user"));
     this.Parts = this.PartsGenerator();
     localStorage.setItem("Parts", JSON.stringify(this.Parts));
+    localStorage.setItem("mechanics", JSON.stringify(this.Mechanics));
     this.Sales = JSON.parse(localStorage.getItem("sales"));
     this.Amount = 0;
     console.log("parts", this.Parts);

@@ -24,6 +24,7 @@ createApp({
             JSON.stringify({
               rol: user.rol,
               document: user.document,
+              name: `${user.name} ${user.lastname}`,
             })
           );
           location.href = "./User/index.html";

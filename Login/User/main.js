@@ -14,7 +14,27 @@ createApp({
     };
   },
   methods: {
-    ordersPerUserF() {
+    ordersPerUser() {
+      const orders = this.orders?.map((order) => {
+        if (order.user.document === this.User.document) {
+          order.descuento = 25;
+          order.iva = 19;
+          order.subtotal = order.parts
+            .map((p) => {
+              return p.total;
+            })
+            .reduce((partialSum, a) => partialSum + a, 0);
+          order.total =
+            order.subtotal + Math.floor((order.subtotal / 100) * 19);
+          order.total =
+            order.total - Math.floor((order.total / 100) * order.descuento);
+          return order;
+        }
+      });
+      this.orderPerUser = orders;
+      console.log(this.orderPerUser);
+    },
+    /*  ordersPerUserF() {
       const orders = this.orders?.map((order) => {
         if (order.user?.document === this.User.document) {
           let localParts = [];
@@ -32,7 +52,7 @@ createApp({
       });
 
       this.orderPerUser = orders ? [orders] : [];
-    },
+    }, */
   },
   beforeMount() {
     this.User = JSON.parse(localStorage.getItem("user"));
@@ -40,14 +60,9 @@ createApp({
     this.orders = JSON.parse(localStorage.getItem("orders"));
   },
   mounted() {
-    this.ordersPerUserF();
-    console.log(this.orderPerUser[0]);
+    /* this.ordersPerUserF(); */
+    this.ordersPerUser();
+    if (!this.User) location.href = "../../index.html";
   },
+  created() {},
 }).mount("#user");
-
-/* const subTotal = partsArray
-.map((part) => part.Price)
-.reduce((partialSum, a) => partialSum + a, 0);
-const total = Math.floor(subTotal - 5000 - (100 * 19) / subTotal);
-partsArray.push({ subTotal: subTotal }, { total });
-return partsArray; */

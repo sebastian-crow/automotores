@@ -26,8 +26,8 @@ createApp({
       User: [],
       counter: 0,
       orderParts: [],
-
       checkedParts: [],
+      mechanics: [],
     };
   },
   methods: {
@@ -60,7 +60,8 @@ createApp({
           details: this.input.details,
           parts: this.checkedParts,
           orderNumber: `#${Date.now()}`,
-          mechanic: "",
+          mechanic:
+            this.mechanics[Math.floor(Math.random() * this.mechanics.length)],
           user: this.User,
         };
         if (this.orders?.length > 0) {
@@ -93,17 +94,8 @@ createApp({
           return part;
         }
       });
-      /*    console.log(this.checkedParts); */
     },
     decrease(id) {
-      /*   this.counter = this.counter === 0 ? 0 : (this.counter -= 1);
-      this.checkedParts.map((part) => {
-        if (part.id === id) {
-          part.cant = this.counter;
-          return part;
-        }
-      }); */
-
       this.checkedParts.map((c) => {
         if (c.id === id) {
           if (c.cant === 1) {
@@ -118,14 +110,24 @@ createApp({
         }
       });
     },
+    calcCost() {
+      const summary = this.checkedParts.map((part) => part.total);
+      this.subtotal = summary.reduce((partialSum, a) => partialSum + a, 0);
+    },
+    logout() {
+      localStorage.removeItem("user");
+    },
   },
   beforeMount() {
     this.User = JSON.parse(localStorage.getItem("user"));
     this.parts = JSON.parse(localStorage.getItem("Parts"));
     this.orders = JSON.parse(localStorage.getItem("orders"));
+    this.mechanics = JSON.parse(localStorage.getItem("mechanics"));
   },
 
   mounted() {},
-  beforeUpdate() {},
+  beforeUpdate() {
+    this.calcCost();
+  },
   updated() {},
 }).mount("#form");

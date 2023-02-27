@@ -51,18 +51,34 @@ createApp({
             JSON.stringify([...this.users, newUser])
           );
           this.success = "Usuario nuevo agregado con exito";
-          setTimeout(() => {
-            window.location.href = "../index.html";
-          }, 1500);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              rol: newUser.rol,
+              document: newUser.document,
+              name: `${newUser.name} ${newUser.lastname}`,
+            })
+          );
+          location.href = "../User/index.html";
           return;
         }
         localStorage.setItem("users", JSON.stringify([newUser]));
         this.success = "Usuario nuevo agregado con exito";
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            rol: newUser.rol,
+            document: newUser.document,
+            name: `${newUser.name} ${newUser.lastname}`,
+          })
+        );
+        location.href = "../User/index.html";
       } else {
         this.message = "Debes llenar todos los campos";
       }
     },
   },
+  beforeMount() {},
   mounted() {
     this.users = JSON.parse(localStorage.getItem("users"));
   },

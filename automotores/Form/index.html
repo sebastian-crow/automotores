@@ -7,7 +7,7 @@
     <link rel="icon" href="../../Img/Favicon.ico" />
     <title>Formulario</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../style.css" />
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!--    <link href="./css/mobiscroll.javascript.min.css" rel="stylesheet" />
     <script src="./js/mobiscroll.javascript.min.js"></script> -->
@@ -69,18 +69,107 @@
         vertical-align: middle;
       }
     </style>
+    <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
     <div id="form">
+      <nav
+        class="bg-white px-6 sm:px-4 py-2 fixed w-full z-20 top-0 left-0 border-b-2 border-black dark:border-black"
+      >
+        <div
+          class="container flex flex-wrap items-center justify-between mx-auto m-4"
+        >
+          <div class="relative">
+            <a href="../../index.html">
+              <h1
+                class="text-4xl font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                style="
+                  font-family: 'color-basic';
+                  overflow: 'hidden';
+                  float: 'left';
+                "
+              >
+                Automotores
+              </h1>
+            </a>
+          </div>
+          <div class="w-[45rem] h-10 relative">
+            <span
+              class="mt-2 -ml-28 writing text-lg font-bold transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              style="font-family: 'trs"
+            >
+              Tenemos todo lo necesario para la reparacion o mejora de tu
+              vehiculo . . .
+            </span>
+          </div>
+          <div
+            class="absolute right-24 border-2 ml-[20rem] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+            v-if="!User"
+          >
+            <div class="border-2 border-black relative shadow-pop-bl">
+              <button class="w-[6rem] h-[2.3rem]">
+                <a
+                  href="../../Login/index.html"
+                  class="text-[1.2rem] font-semibold"
+                  style="font-family: 'trs'"
+                >
+                  Iniciar
+                </a>
+              </button>
+            </div>
+          </div>
+          <div v-if="User" class="absolute top-6 right-4">
+            <div
+              class="absolute right-28 ml-[20rem] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+            >
+              <div class="border-2 border-black relative shadow-pop-bl">
+                <button class="w-[6rem] h-[2.3rem]" @click="logout">
+                  <a
+                    href="../../index.html"
+                    class="text-[1.2rem] font-semibold"
+                    style="font-family: 'trs'"
+                  >
+                    Salir
+                  </a>
+                </button>
+              </div>
+            </div>
+            <div
+              class="absolute -top-1 right-[5.5rem] border-l-2 h-14 border-black"
+            ></div>
+            <div
+              class="absolute right-[6rem] border-2 ml-[20rem] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+            >
+              <div class="absolute -top-1 -right-[7.4rem]">
+                <button class="w-[6rem] h-[2.3rem]">
+                  <a
+                    href="../../Login/User/index.html"
+                    class="text-[1.2rem] font-semibold"
+                  >
+                    <img
+                      src="../../Img/contact-svgrepo-com.svg"
+                      alt="Revisar solicitudes "
+                      width="38"
+                    />
+                  </a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <br />
+      <br />
+      <br />
       <div
-        class="z-20 fixed top-28 left-12 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        class="z-20 fixed top-48 left-12 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       >
         <a href="../../index.html">
           <img src="../../Img/right-arrow-svgrepo-com.svg" alt="" width="60" />
         </a>
       </div>
       <div
-        class="z-20 fixed top-28 right-12 w-72 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+        class="z-20 fixed top-48 right-12 w-72 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
         v-if="!User"
       >
         <div
@@ -96,7 +185,7 @@
         </div>
       </div>
 
-      <div class="absolute top-14 left-28 w-[90%]">
+      <div class="absolute top-28 left-28 w-[90%]">
         <!-- component -->
         <div class="flex justify-center items-center w-full h-full bg-white">
           <div class="container mx-auto my-4 px-4 lg:px-20">
@@ -420,11 +509,20 @@
                     class="flex flex-col max-h-1/2"
                     style="font-family: 'trs'"
                   >
-                    <h2 class="text-2xl" v-show="input.parts.length">
-                      Repuestos
-                    </h2>
-                    <p class="text-gray-400" v-show="input.parts.length">
-                      La lista de repuestos se verá reflejada en tu factura
+                    <div
+                      v-if="checkedParts.length > 0"
+                      v-for="checked in checkedParts"
+                    >
+                      <h2 class="text-2xl">
+                        <p>{{ checked.Name }} <br /></p>
+                      </h2>
+                      <p class="text-gray-400">{{checked.cant}}</p>
+                    </div>
+                    <p
+                      class="text-yellow-200 text-xl"
+                      v-show="checkedParts.length > 0"
+                    >
+                      Subtotal: {{subtotal}} COP
                     </p>
                   </div>
                 </div>
@@ -446,6 +544,92 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="absolute w-[100%] h-[2.5rem] -bottom-[11rem] mr-28">
+          <footer
+            class="p-4 bg-white sm:p-6 border-2 border-black absolute w-full bottom-4"
+          >
+            <div class="md:flex md:justify-between">
+              <div class="mb-6 md:mb-0 border-2 border-black w-28">
+                <div class="w-full">
+                  <a href="#" class="flex items-center">
+                    <img
+                      src="../../Img/Rectangle 5.svg"
+                      alt="Circle"
+                      width="100"
+                      class="m-3"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div>
+                  <h2
+                    class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-gray-900"
+                  >
+                    Recursos
+                  </h2>
+                  <ul class="text-gray-600 dark:text-gray-400">
+                    <li class="mb-4">
+                      <a href="#" class="hover:underline">Design</a>
+                    </li>
+                    <li>
+                      <a href="#" class="hover:underline">Figma</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h2
+                    class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-gray-900"
+                  >
+                    Siguenos
+                  </h2>
+                  <ul class="text-gray-600 dark:text-gray-400">
+                    <li class="mb-4">
+                      <a
+                        href="https://github.com/sebastian-crow/automotores"
+                        class="hover:underline"
+                        >Github</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:underline">Discord</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h2
+                    class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-gray-900"
+                  >
+                    Legal
+                  </h2>
+                  <ul class="text-gray-600 dark:text-black">
+                    <li class="mb-4">
+                      <a href="#" class="hover:underline dark:text-gray-400"
+                        >Privacy Policy</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="hover:underline dark:text-gray-400"
+                        >Terms &amp; Conditions</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="sm:flex sm:items-center sm:justify-between">
+              <span class="text-sm text-gray-500 sm:text-center dark:text-black"
+                >© 2023
+                <a
+                  href="https://github.com/sebastian-crow/automotores"
+                  class="hover:underline"
+                  >Automotores</a
+                >. All Rights Reserved.
+              </span>
+            </div>
+          </footer>
         </div>
       </div>
     </div>

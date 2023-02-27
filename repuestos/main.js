@@ -110,6 +110,8 @@ createApp({
           description:
             "El amortiguador es uno de los elementos que conforman la suspensión de un vehículo. Su función es la de limitar el movimiento de la suspensión, evitando el rebote constante de los muelles",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 40000,
         },
         {
           Name: "Luces",
@@ -119,6 +121,8 @@ createApp({
           description:
             "Las luces situadas en la parte delantera, lateral y trasera de un automóvil son unos elementos de seguridad básicos que tienen como finalidad proveer de iluminación al conductor",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 35000,
         },
         {
           Name: "Baterías",
@@ -128,6 +132,8 @@ createApp({
           description:
             " Las baterías para carro se encargan de acumular y suministrar la corriente eléctrica del vehículo, para que este pueda funcionar con normalidad. Baterias recargables",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 120000,
         },
         {
           Name: "Llantas",
@@ -138,6 +144,8 @@ createApp({
           description:
             "Es una pieza generalmente circular y metálica, aunque su forma varía en relación al tipo y tamaño del vehículo. Se sitúa en el centro de la rueda, sobre la que se coloca un neumatico.  ",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 350000,
         },
         {
           Name: "Espejos",
@@ -147,6 +155,8 @@ createApp({
           description:
             "Los espejos retrovisores son dispositivos que permiten visualizar los vehículos, objetos y personas que están detrás del coche, para evitar el peligro que significa mirar hacia atrás o hacia los lados girando la cabeza o el cuerpo.",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 100000,
         },
         {
           Name: "Rines",
@@ -156,6 +166,8 @@ createApp({
           description:
             "Los rines vienen en diferentes materiales como aluminio, acero, magnesio y de aleación. A grandes rasgos sus características principales por material son: Aluminio: El más común, ligero, bastante resistente y accesible en costo",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 230000,
         },
         {
           Name: "Neumáticos",
@@ -165,6 +177,8 @@ createApp({
           description:
             "Un neumático es una pieza de caucho con forma toroidal que forma parte de las ruedas de un automóvil y suelen ir protegidos por llantas de metal. Puede que los neumáticos reciban otros nombres como cubierta, goma o caucho.",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 60000,
         },
         {
           Name: "Antenas",
@@ -174,6 +188,8 @@ createApp({
           description:
             "La antena del coche es un dispositivo que tiene como función captar las ondas electromagnéticas del espacio. Así pues, es el medio de comunicación entre el exterior y el interior del vehículo. Radio AM, FM y DAB.  ",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 15000,
         },
         {
           Name: "Filtros",
@@ -183,6 +199,8 @@ createApp({
           description:
             "Es una parte esencial del motor.La función primordial de los filtros es neutralizar los contaminantes y eliminar malos olores y sabores del agua. Disminuyendo la contaminación",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 20000,
         },
         {
           Name: "Vidrios",
@@ -192,6 +210,8 @@ createApp({
           description:
             "Los cristales son parte fundamental en un automóvil, hacen parte de la seguridad activa y pasiva, a demás de permitir la visibilidad del conductor del camino y todo el entorno.",
           id: Math.floor(Math.random() * 125) + Date.now(),
+          cant: 1,
+          total: 45000,
         },
       ];
     },

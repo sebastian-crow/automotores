@@ -25,6 +25,9 @@ createApp({
       localParts: [],
       User: [],
       counter: 0,
+      orderParts: [],
+
+      checkedParts: [],
     };
   },
   methods: {
@@ -55,7 +58,7 @@ createApp({
           vehicleTypeDetail: this.input.vehicleTypeDetail,
           licensePlates: this.input.licensePlates,
           details: this.input.details,
-          parts: this.input.parts,
+          parts: this.checkedParts,
           orderNumber: `#${Date.now()}`,
           mechanic: "",
           user: this.User,
@@ -82,31 +85,47 @@ createApp({
       }
     },
 
-    populateParts() {
-      var select = document.getElementById("partsSelect");
-      for (var i = 0; i <= this.parts?.length; i++) {
-        select?.options.add(new Option(this.parts[i]?.Name, this.parts[i]?.id));
+    increase(id) {
+      this.checkedParts.filter((part) => {
+        if (part.id === id) {
+          part.cant++;
+          part.total += part.Price;
+          return part;
+        }
+      });
+      /*    console.log(this.checkedParts); */
+    },
+    decrease(id) {
+      /*   this.counter = this.counter === 0 ? 0 : (this.counter -= 1);
+      this.checkedParts.map((part) => {
+        if (part.id === id) {
+          part.cant = this.counter;
+          return part;
+        }
+      }); */
 
-        this.localParts.push(this.parts[i]);
-      }
-    },
-
-    increase() {
-      this.counter += 1;
-    },
-    decrease() {
-      this.counter = this.counter === 0 ? 0 : (this.counter -= 1);
-    },
-    reset() {
-      this.counter = 0;
+      this.checkedParts.map((c) => {
+        if (c.id === id) {
+          if (c.cant === 1) {
+            c.cant = 1;
+            c.total = c.Price;
+            return c;
+          } else {
+            c.cant--;
+            c.total = c.total - c.Price;
+            return c;
+          }
+        }
+      });
     },
   },
-  mounted() {
+  beforeMount() {
     this.User = JSON.parse(localStorage.getItem("user"));
     this.parts = JSON.parse(localStorage.getItem("Parts"));
     this.orders = JSON.parse(localStorage.getItem("orders"));
-    this.populateParts();
-    console.log(this.User.document);
   },
+
+  mounted() {},
   beforeUpdate() {},
+  updated() {},
 }).mount("#form");

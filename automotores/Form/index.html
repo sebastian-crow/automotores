@@ -240,7 +240,7 @@
                     <div class="h-full w-full grid grid-cols-1 gap-8">
                       <!-- Card -->
                       <div
-                        class="max-w-full mx-auto mt-2 bg-gray-700 shadow-lg rounded-nonefocus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                        class="max-w-full mx-auto mt-2 bg-black shadow-lg rounded-nonefocus:outline-none focus:shadow-outline border-2 border-white relative shadow-pop-bl"
                         v-for="part in parts"
                       >
                         <div class="px-4 py-4">
@@ -278,18 +278,42 @@
                                 class="ml-4 flex items-end justify-between whitespace-normal"
                               >
                                 <!-- Paragraph -->
-                                <div class="max-w-md text-gray-300">
+                                <div class="max-w-md text-gray-300 col-span-4">
                                   <p class="mb-2">{{ part.description}}</p>
                                 </div>
-                                <!--    <div class="number"></div>
-                                <span class="minus">-</span>
-                                <input type="text" class="elinput" value="1" />
-                                <span class="plus">+</span> -->
-                                <div class="mt-20">
-                                  <label>{{ counter}}</label>
-                                  <button @click="decrease">decrease</button>
-                                  <button @click="reset">reset</button>
-                                  <button @click="increase">increase</button>
+                              </div>
+                              <div class="grid grid-cols-4">
+                                <div
+                                  class="border-2 border-white w-10 h-10 col-span-2 place-self-end"
+                                >
+                                  <input
+                                    type="checkbox"
+                                    class="w-full h-full"
+                                    :value="part"
+                                    v-model="checkedParts"
+                                  />
+                                </div>
+                                <div
+                                  class="border-2 border-white w-36 h-10 col-span-2 place-self-center"
+                                >
+                                  <div class="grid grid-cols-3">
+                                    <button
+                                      class="col-span-1 place-self-start mt-1"
+                                      @click="decrease(part.id)"
+                                    >
+                                      -
+                                    </button>
+                                    <label
+                                      class="col-span-1 place-self-center mt-1"
+                                      >{{ part.cant }}</label
+                                    >
+                                    <button
+                                      class="col-span-1 place-self-end mb-1.5"
+                                      @click="increase(part.id)"
+                                    >
+                                      +
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -318,7 +342,7 @@
               </div>
               <div class="my-4">
                 <textarea
-                  placeholder="Falla Detallada del vehiculo*"
+                  placeholder="Falla Detallada del vehiculo. Cuentanos todo lo necesario a tener en cuenta a la hora de reparar tu vehiculo.*"
                   class="w-full h-32 shadow-md text-black border-2 border-black mt-2 p-3 rounded-none focus:outline-none focus:shadow-outline"
                   style="font-family: 'trs'"
                   v-model="input.details"

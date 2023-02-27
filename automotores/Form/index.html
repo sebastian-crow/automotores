@@ -41,10 +41,37 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #2c3333;
       }
+
+      .elspan {
+        cursor: pointer;
+      }
+
+      .minus,
+      .plus {
+        width: 20px;
+        height: 20px;
+        background: #f2f2f2;
+        border-radius: 4px;
+        padding: 8px 5px 8px 5px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .elinput {
+        height: 34px;
+        width: 100px;
+        text-align: center;
+        font-size: 26px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: inline-block;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
-    <div id="root">
+    <div id="form">
       <div
         class="z-20 fixed top-28 left-12 w-20 rotate-180 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
       >
@@ -191,14 +218,16 @@
                 />
 
                 <div
-                  class="relative col-span-2 w-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                  class="relative col-span-2 w-full h-full shadow-md text-black mt-2 p-3 rounded-none border-2 border-black focus:outline-none focus:shadow-outline tracking-wide bg-black text-white p-3 rounded-none w-full focus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
                 >
                   <span class="m-2" style="font-family: 'trs'"
                     >Que repuestos necesitas?</span
                   >
 
-                  <div class="m-4 w-[95%]">
-                    <select
+                  <div
+                    class="z-30 mt-4 ml-0 w-full h-80 max-h-80 max-w-full overflow-y-auto"
+                  >
+                    <!--       <select
                       id="partsSelect"
                       style="font-family: 'trs'"
                       class="form-control selectpicker w-full mt-8 hover:text-white border-2 bg-black text-white p-3 rounded-none focus:outline-none focus:shadow-outline focus:bg-black relative shadow-pop-bl"
@@ -207,7 +236,67 @@
                       placeholder="Repuestos"
                     >
                       <option value="" disabled>Repuestos</option>
-                    </select>
+                    </select> -->
+                    <div class="h-full w-full grid grid-cols-1 gap-8">
+                      <!-- Card -->
+                      <div
+                        class="max-w-full mx-auto mt-2 bg-gray-700 shadow-lg rounded-nonefocus:outline-none focus:shadow-outline border-2 border-black relative shadow-pop-bl"
+                        v-for="part in parts"
+                      >
+                        <div class="px-4 py-4">
+                          <div class="flex items-start">
+                            <!-- Icon -->
+                            <div
+                              class="w-32 h-36 m-0 border-2 border-black rounded-md"
+                            >
+                              <img
+                                :src="part.url"
+                                alt=""
+                                class="w-full h-full"
+                              />
+                            </div>
+                            <!-- Card content -->
+                            <div class="flex-grow truncate">
+                              <!-- Card header -->
+                              <div
+                                class="w-full relative sm:flex justify-between items-center mb-3 ml-4"
+                              >
+                                <!-- Title -->
+                                <h2
+                                  class="text-2xl leading-snug font-extrabold text-gray-300 truncate mb-1 sm:mb-0"
+                                >
+                                  {{ part.Name }}
+                                </h2>
+                                <h2
+                                  class="absolute right-20 text-lg leading-snug font-extrabold text-gray-200 truncate mb-0 sm:mb-0"
+                                >
+                                  {{part.Price}} COP
+                                </h2>
+                              </div>
+                              <!-- Card body -->
+                              <div
+                                class="ml-4 flex items-end justify-between whitespace-normal"
+                              >
+                                <!-- Paragraph -->
+                                <div class="max-w-md text-gray-300">
+                                  <p class="mb-2">{{ part.description}}</p>
+                                </div>
+                                <!--    <div class="number"></div>
+                                <span class="minus">-</span>
+                                <input type="text" class="elinput" value="1" />
+                                <span class="plus">+</span> -->
+                                <div class="mt-20">
+                                  <label>{{ counter}}</label>
+                                  <button @click="decrease">decrease</button>
+                                  <button @click="reset">reset</button>
+                                  <button @click="increase">increase</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div v-if="message">
@@ -336,24 +425,9 @@
         </div>
       </div>
     </div>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script src="main.js"></script>
-    <!--     <script>
-      mobiscroll.select("#multiple-select", {
-        inputElement: document.getElementById("my-input"),
-        touchUi: false,
-      });
-
-      mobiscroll.setOptions({
-        locale: mobiscroll.localeEs,
-        theme: "ios",
-        themeVariant: "light",
-      });
-
-      mobiscroll.select("#demo-multiple-select", {
-        inputElement: document.getElementById("demo-multiple-select-input"),
-      });
-    </script> -->
   </body>
 </html>

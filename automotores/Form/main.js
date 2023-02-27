@@ -24,6 +24,7 @@ createApp({
       orders: [],
       localParts: [],
       User: [],
+      counter: 0,
     };
   },
   methods: {
@@ -84,10 +85,20 @@ createApp({
     populateParts() {
       var select = document.getElementById("partsSelect");
       for (var i = 0; i <= this.parts?.length; i++) {
-        select.options.add(new Option(this.parts[i]?.Name, this.parts[i]?.id));
+        select?.options.add(new Option(this.parts[i]?.Name, this.parts[i]?.id));
 
         this.localParts.push(this.parts[i]);
       }
+    },
+
+    increase() {
+      this.counter += 1;
+    },
+    decrease() {
+      this.counter = this.counter === 0 ? 0 : (this.counter -= 1);
+    },
+    reset() {
+      this.counter = 0;
     },
   },
   mounted() {
@@ -97,4 +108,5 @@ createApp({
     this.populateParts();
     console.log(this.User.document);
   },
-}).mount("#root");
+  beforeUpdate() {},
+}).mount("#form");

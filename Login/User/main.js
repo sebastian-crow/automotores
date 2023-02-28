@@ -34,25 +34,10 @@ createApp({
       this.orderPerUser = orders;
       console.log(this.orderPerUser);
     },
-    /*  ordersPerUserF() {
-      const orders = this.orders?.map((order) => {
-        if (order.user?.document === this.User.document) {
-          let localParts = [];
-          order.parts.map((o) => {
-            for (let p = 0; p < this.parts.length; p++) {
-              if (this.parts[p].id === parseInt(o)) {
-                localParts.push(this.parts[p]);
-                console.log(this.parts[p]);
-              }
-            }
-          });
-          order.parts = localParts;
-          return order;
-        }
-      });
-
-      this.orderPerUser = orders ? [orders] : [];
-    }, */
+    logout() {
+      localStorage.removeItem("user");
+      location.href = "../../index.html";
+    },
   },
   beforeMount() {
     this.User = JSON.parse(localStorage.getItem("user"));
@@ -60,7 +45,6 @@ createApp({
     this.orders = JSON.parse(localStorage.getItem("orders"));
   },
   mounted() {
-    /* this.ordersPerUserF(); */
     this.ordersPerUser();
     if (!this.User) location.href = "../../index.html";
   },
